@@ -1,4 +1,4 @@
-rootdir: /home/chenghao/PCC_Arena/algorithms/mpeg-pcc-tmc2-release-v12.0/
+rootdir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/algorithms/VPCC
 encoder: bin/PccAppEncoder
 decoder: bin/PccAppDecoder
 bin_suffix: .bin

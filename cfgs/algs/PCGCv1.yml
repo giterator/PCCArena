@@ -1,5 +1,5 @@
-python: /home/chenghao/anaconda3/envs/pcgc_v1/bin/python
-rootdir: /home/chenghao/PCC_Arena/algorithms/PCGCv1/
+python: /home/pranav/anaconda3/envs/PCGCv1/bin/python
+rootdir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/algorithms/PCGCv1
 test_script: test.py
 bin_suffix: ''
 use_gpu: True

@@ -1,5 +1,5 @@
-python: /home/chenghao/anaconda3/envs/geocnn_v2/bin/python
-rootdir: /home/chenghao/PCC_Arena/algorithms/geocnn_v2
+python: /home/pranav/anaconda3/envs/GeoCNNv2/bin/python
+rootdir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/algorithms/GeoCNNv2
 encoder: src/compress_octree.py
 decoder: src/decompress_octree.py
 bin_suffix: .bin

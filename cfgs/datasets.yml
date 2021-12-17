@@ -1,4 +1,4 @@
-ds_rootdir: &ds_rootdir /mnt/data6/chenghao/PCC_datasets/
+ds_rootdir: &ds_rootdir /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/datasets/
 
 Sample_SNC:
     dataset_dir: !join [*ds_rootdir, SNC_scale1024]

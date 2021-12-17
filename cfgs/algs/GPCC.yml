@@ -1,4 +1,4 @@
-rootdir: /home/chenghao/PCC_Arena/algorithms/mpeg-pcc-tmc13-release-v12.0/
+rootdir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/algorithms/GPCC
 encoder: build/tmc3/tmc3
 decoder: build/tmc3/tmc3
 bin_suffix: .bin
