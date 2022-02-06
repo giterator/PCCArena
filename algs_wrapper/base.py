@@ -212,12 +212,13 @@ class Base(metaclass=abc.ABCMeta):
             if not self.debug:
                 self._failure_cnt += 1
                 return
-        
+
+
         # # For evaluation only
         # enc_time = dec_time = -1
         # if not Path(out_pcfile).exists():
         #     return
-        
+
         self._evaluate_and_log(
             nor_pcfile, out_pcfile, bin_file, evl_log, enc_time, dec_time, o3d_vis
         )
@@ -254,11 +255,13 @@ class Base(metaclass=abc.ABCMeta):
         """
         in_pcfile = Path(src_dir).joinpath(pcfile)
         nor_pcfile = Path(nor_dir).joinpath(pcfile)
+
         bin_file = (
             Path(exp_dir)
             .joinpath('bin', pcfile).with_suffix(self._algs_cfg['bin_suffix'])
         )
         out_pcfile = Path(exp_dir).joinpath('dec', pcfile)
+
         evl_log = Path(exp_dir).joinpath('evl', pcfile).with_suffix('.log')
         
         bin_file.parent.mkdir(parents=True, exist_ok=True)

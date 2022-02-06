@@ -6,7 +6,7 @@ from algs_wrapper.VPCC import VPCC
 if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(
-        description="Wrapper for user to evaluate point clouds.",
+        description="Wrapper for user to evaluate a single pair of point clouds.",
         formatter_class=argparse.ArgumentDefaultsHelpFormatter
     )
 

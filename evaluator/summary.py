@@ -96,9 +96,12 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
     ds_name = Path(log_dir).parents[1].stem
     rate = Path(log_dir).parents[0].stem
 
+    # summary_csv = (
+    #     Path(log_dir).parent
+    #     .joinpath(f'{alg_name}_{ds_name}_{rate}_summary.csv')
+    # )
     summary_csv = (
-        Path(log_dir).parent
-        .joinpath(f'{alg_name}_{ds_name}_{rate}_summary.csv')
+        Path(log_dir).joinpath(f'{alg_name}_{ds_name}_{rate}_summary.csv')
     )
     
     with open(summary_csv, 'w') as csvfile:

@@ -1,5 +1,13 @@
 ds_rootdir: &ds_rootdir /mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/datasets/
 
+urop:
+    dataset_dir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/test_data/decompressed/vanilla
+    dataset_w_normal_dir: /mnt/d/NUS/Volumetric_Video_Streaming_UROP/test_data/decompressed/vanilla
+    test_pattern: '*.ply'
+    scale: 1024
+    color: True
+
+###########################################################################################3
 Sample_SNC:
     dataset_dir: !join [*ds_rootdir, SNC_scale1024]
     dataset_w_normal_dir: !join [*ds_rootdir, SNC_normal_scale1024]
