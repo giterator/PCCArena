@@ -1,6 +1,8 @@
-dir = '/mnt/d/NUS/Volumetric_Video_Streaming_UROP/dynamic_pc_data'
+dir = '/mnt/d/NUS/Volumetric_Video_Streaming_UROP/dynamic_pc_data/'
+VPCC_dir = '/mnt/c/Users/prana/My Documents/GitHub/mpeg-pcc-tmc2/'
 
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
+start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
 
 common_encode_cmd = ['./bin/PccAppEncoder',
                      '--configurationFolder=cfg/',
@@ -10,8 +12,7 @@ common_encode_cmd = ['./bin/PccAppEncoder',
                      '--nbThread=40',
                      '--colorTransform=0',
                      '--keepIntermediateFiles',
-                     '--startFrameNumber=1051',
-                     '--frameCount=50',
+                     '--frameCount=1',
                      '--computeChecksum=0',
                      '--computeMetrics=0'
                      ]
@@ -22,7 +23,6 @@ common_decode_cmd = ['./bin/PccAppDecoder',
                      '--colorTransform=0',
                      '--computeMetrics=0',
                      '--computeChecksum=0',
-                     '--startFrameNumber=1051',
                      '--keepIntermediateFiles',
                      ]
 
@@ -30,41 +30,41 @@ common_decode_cmd = ['./bin/PccAppDecoder',
 experiments = [
     # vanilla
     {'name': 'vanilla_OM=4',
-     'encode': common_encode_cmd.extend(['--occupancyPrecision=4']),
+     'encode': common_encode_cmd + ['--occupancyPrecision=4'],
      'decode': common_decode_cmd
      },
 
     # 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4',
-     'encode': common_encode_cmd.extend(['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4']),
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
      'decode': common_decode_cmd
      },
 
     {'name': '2DD_lodX=2_lodY=1_OM=1',
-     'encode': common_encode_cmd.extend(['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1']),
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1'],
      'decode': common_decode_cmd
      },
 
     # 3DD
     {'name': '3DD_2_noQuantize_OM=4',
-     'encode': common_encode_cmd.extend(['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD']),
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
      'decode': common_decode_cmd
      },
 
     {'name': '3DD_2_Quantize=2_OM=4',
-     'encode': common_encode_cmd.extend(
-         ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2']),
-     'decode': common_decode_cmd.extend(['--upscalePC=2'])
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
+     'decode': common_decode_cmd + ['--upscalePC=2']
      },
 
     {'name': '3DD_2_noQuantize_OM=1',
-     'encode': common_encode_cmd.extend(['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD']),
+     'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD'],
      'decode': common_decode_cmd
      },
 
     {'name': '3DD_2_Quantize=2_OM=1',
-     'encode': common_encode_cmd.extend(
-         ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2']),
-     'decode': common_decode_cmd.extend(['--upscalePC=2'])
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
+     'decode': common_decode_cmd + ['--upscalePC=2']
      }
 ]
