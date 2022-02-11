@@ -210,6 +210,54 @@ def collate_quality_charts():
 
 
 
+def collate_quality_rate():
+
+    # compute list of <dataset>_<experiment name> : bin_size
+    exp_size = {}
+    for dataset_name in datasets:
+        experiments_path = os.path.join(dir, dataset_name, "experiments")
+        for experiment in experiments:
+            curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+            compressed_path = os.path.join(curr_experiment_path, "compressed")
+            bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
+            bin_size = os.path.getsize(bin_path)
+
+            exp_size[dataset_name + "_" + experiment['name']] = bin_size
+
+    charts_path = os.path.join(dir, "charts/")
+    if not Path(charts_path).is_dir():
+        os.mkdir(charts_path)
+
+    # for each metric:
+    # for each experiment, get bin size, compute avg of metric
+    # DO SCATTER PLOT
+    for metric in metric_name_map.keys():
+        metric_name = metric_name_map[metric]
+        # clear plot
+        plt.clf()
+        plt.title(metric_name + "_VS_rate")
+        plt.xlabel("Rate (bytes)")
+        plt.ylabel(metric_name)
+
+        for dataset_name in datasets:
+            experiments_path = os.path.join(dir, dataset_name, "experiments")
+            for experiment in experiments:
+                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                metrics_path = os.path.join(curr_experiment_path, "metrics/")
+                df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+
+                avg_metric = df[metric].mean()
+                bin_size = exp_size[dataset_name + "_" + experiment['name']]
+                #add point to scatter plot
+                plt.scatter(bin_size, avg_metric, marker='.', label=experiment['name'])
+                plt.legend()
+                plt.grid()
+        #save plot
+        plt.savefig(charts_path + "/" + metric_name + "_VS_rate.png",
+                    bbox_inches='tight')  # bbox prevents cutoff portions of image
+
+
+
 if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
 
@@ -256,7 +304,7 @@ if __name__ == '__main__':
     collate_quality_charts()
     print("Generated collated quality metrics charts by dataset")
     #
-    # # collate metrics into quality vs rate
-    # collate_quality_rate(datasets, experiments)  # check if chart alr exists, if yes then add to it, else create
-    #
-    # print("Quality vs rate collated for: ", experiment['name'], " for dataset: ", dataset_name)
+    # collate metrics into quality vs rate
+    collate_quality_rate()
+
+    print("Quality vs rate collated for all datasets")
