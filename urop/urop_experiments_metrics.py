@@ -9,6 +9,7 @@
 # |           |- decompressed
 # |           |- reconstructed
 # |           |- metrics
+# |           |-charts
 # |
 # |-loot
 # |   |- Ply
@@ -18,6 +19,7 @@
 # |           |- decompressed
 # |           |- reconstructed
 # |           |- metrics
+# |           |-charts
 # |
 # |- redandblack
 # |   |- Ply
@@ -27,6 +29,7 @@
 # |           |- decompressed
 # |           |- reconstructed
 # |           |- metrics
+# |           |-charts
 # |
 # |- solder
 # |   |- Ply
@@ -36,6 +39,7 @@
 # |           |- decompressed
 # |           |- reconstructed
 # |           |- metrics
+# |           |-charts
 
 # import logging
 from pathlib import Path
@@ -138,10 +142,11 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
     experiment_name = scope_experiment['name']
 
     metrics_path = os.path.join(scope_curr_experiment_path, "metrics/")
-    charts_path = os.path.join(dir, "charts/")
+    indiv_charts_path = os.path.join(scope_curr_experiment_path, "charts/")
+    # charts_path = os.path.join(dir, "charts/")
 
-    if not Path(charts_path).is_dir():
-        os.mkdir(charts_path)
+    if not Path(indiv_charts_path).is_dir():
+        os.mkdir(indiv_charts_path)
 
     #open summary csv in metrics_path of the form <scope_dataset_name>_experiments_<experiment_name>_summary.csv
     #create chart for each column with y axis as metric, x axis as frame no. (based on star frame no.) => save in charts_path with name & chart title: <scope_dataset_name>_<experiment_name>_<metric>
@@ -165,7 +170,7 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
         plt.ylabel(metric_name)
         plt.plot(x_points, y_points, marker='.')
         plt.grid()
-        plt.savefig(charts_path + scope_dataset_name + "_" + experiment_name + "_" + metric_name + ".png", bbox_inches='tight') #bbox prevents cutoff portions of image
+        plt.savefig(indiv_charts_path + scope_dataset_name + "_" + experiment_name + "_" + metric_name + ".png", bbox_inches='tight') #bbox prevents cutoff portions of image
 
 
 if __name__ == '__main__':
