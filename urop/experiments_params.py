@@ -4,6 +4,15 @@ VPCC_dir = '/mnt/c/Users/prana/My Documents/GitHub/mpeg-pcc-tmc2/'
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
 
+metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1->2) p2pt',
+                   'acd21_p2pt': 'Asym. Chamfer dist. (2->1) p2pt',
+                   'cd_p2pt': 'Chamfer dist. p2pt',
+                   'cdpsnr_p2pt': 'CD-PSNR (dB) p2pt',
+                   'h_p2pt': 'Hausdorff distance p2pt',
+                   'y_cpsnr': 'Y-CPSNR (dB)',
+                   'u_cpsnr': 'U-CPSNR (dB)',
+                   'v_cpsnr': 'V-CPSNR (dB)'}
+
 common_encode_cmd = ['./bin/PccAppEncoder',
                      '--configurationFolder=cfg/',
                      '--config=cfg/common/ctc-common.cfg',
@@ -12,7 +21,7 @@ common_encode_cmd = ['./bin/PccAppEncoder',
                      '--nbThread=40',
                      '--colorTransform=0',
                      '--keepIntermediateFiles',
-                     '--frameCount=1',
+                     '--frameCount=2',
                      '--computeChecksum=0',
                      '--computeMetrics=0'
                      ]
