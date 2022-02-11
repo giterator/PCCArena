@@ -143,7 +143,6 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
 
     metrics_path = os.path.join(scope_curr_experiment_path, "metrics/")
     indiv_charts_path = os.path.join(scope_curr_experiment_path, "charts/")
-    # charts_path = os.path.join(dir, "charts/")
 
     if not Path(indiv_charts_path).is_dir():
         os.mkdir(indiv_charts_path)
@@ -171,6 +170,44 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
         plt.plot(x_points, y_points, marker='.')
         plt.grid()
         plt.savefig(indiv_charts_path + scope_dataset_name + "_" + experiment_name + "_" + metric_name + ".png", bbox_inches='tight') #bbox prevents cutoff portions of image
+
+
+def collate_quality_charts():
+    #for each dataset, create new chart for quality metric, put all experiments wrt frame no. in the chart
+    for dataset_name in datasets:
+        charts_path = os.path.join(dir, dataset_name, "charts/")
+
+        if not Path(charts_path).is_dir():
+            os.mkdir(charts_path)
+
+        for metric in metric_name_map.keys():
+            metric_name = metric_name_map[metric]
+            # clear plot
+            plt.clf()
+            # set x axis to only show int
+            plt.gca().xaxis.set_major_locator(mticker.MultipleLocator(1))
+            plt.title(dataset_name + "_" + metric_name + "_combined")
+            plt.xlabel("Frame Number")
+            plt.ylabel(metric_name)
+
+            #iterate through each experiment for the dataset_name, add to plot, use frame no. as index
+            for experiment in experiments:
+                experiments_path = os.path.join(dir, dataset_name, "experiments")
+                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                metrics_path = os.path.join(curr_experiment_path, "metrics/")
+                df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                df['frame'] = df.index + int(start_frame_no[dataset_name])
+
+                y_points = df[metric].values
+                x_points = df['frame'].values
+
+                plt.plot(x_points, y_points, marker='.', label=experiment['name'])
+                plt.legend()
+                plt.grid()
+
+            plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined.png",
+                        bbox_inches='tight')  # bbox prevents cutoff portions of image
+
 
 
 if __name__ == '__main__':
@@ -214,8 +251,12 @@ if __name__ == '__main__':
                             dataset_name)
 
             print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
-            #
-            # # collate metrics into quality vs rate
-            # collate_quality_rate(datasets, experiments)  # check if chart alr exists, if yes then add to it, else create
-            #
-            # print("Quality vs rate collated for: ", experiment['name'], " for dataset: ", dataset_name)
+
+
+    collate_quality_charts()
+    print("Generated collated quality metrics charts by dataset")
+    #
+    # # collate metrics into quality vs rate
+    # collate_quality_rate(datasets, experiments)  # check if chart alr exists, if yes then add to it, else create
+    #
+    # print("Quality vs rate collated for: ", experiment['name'], " for dataset: ", dataset_name)
