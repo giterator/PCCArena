@@ -55,7 +55,7 @@ if __name__ == '__main__':
 
     # run loop of evaluate_and_log to generate set of log files
 
-    if len(ref_pcs_path) != len(target_pcs_path):
+    if len(ref_pcs_path) < len(target_pcs_path):
         print("no. of target & reference plys are different")
         print("no. of reference plys: ", len(ref_pcs_path))
         print("no. of target plys: ", len(target_pcs_path))
@@ -66,7 +66,7 @@ if __name__ == '__main__':
     for f in existing_metric_files:
         os.remove(f)
 
-    for i in range(0, len(ref_pcs_path)):
+    for i in range(0, len(target_pcs_path)):
         vpcc._evaluate_and_log(
             ref_pcfile=ref_pcs_path[i],
             target_pcfile=target_pcs_path[i],
