@@ -1,6 +1,16 @@
+When setting up PCCArena, do:
+    conda env create -f cfgs/conda_env/pcc_arena.yml
+    python setup.py
 
-Do setup of PCCArena
 Modify frameCount argument value in common_encode_cmd
 Set dir & VPCC_dir &PCCArena_dir as directory for dynamic_pc_data & VPCC directory & PCCArena directory respectively
+ACTIVATE CONDA: source ~/.bashrc
 Activate pcc_arena environment
-python3 PCCArena/urop/urop_experiments_metrics.py
+
+FOR ALL VPCC executables do `chmod +x name.sh` i.e. chmod +x PccAppEncoder , chmod +x PccAppDecoder
+From ~ dir: python3 PCCArena/urop/urop_experiments_metrics.py
+                    OR
+                    nohup python3 PCCArena/urop/urop_experiments_metrics.py &
+
+
+To view no. of thrweads in use by a pid: ps -o nlwp <pid>

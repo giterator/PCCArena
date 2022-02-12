@@ -22,7 +22,7 @@ common_encode_cmd = ['./bin/PccAppEncoder',
                      '--nbThread=40',
                      '--colorTransform=0',
                      '--keepIntermediateFiles',
-                     '--frameCount=2',
+                     '--frameCount=300',
                      '--computeChecksum=0',
                      '--computeMetrics=0'
                      ]
