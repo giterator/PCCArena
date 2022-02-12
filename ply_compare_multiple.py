@@ -6,6 +6,7 @@ import os
 import sys
 import glob
 from evaluator.summary import summarize_one_setup
+import fnmatch
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -56,9 +57,17 @@ if __name__ == '__main__':
     # run loop of evaluate_and_log to generate set of log files
 
     if len(ref_pcs_path) < len(target_pcs_path):
-        print("no. of target & reference plys are different")
+        print("no. of reference plys are less than target plys")
         print("no. of reference plys: ", len(ref_pcs_path))
         print("no. of target plys: ", len(target_pcs_path))
+        sys.exit()
+
+    existing_log_files_count = len(fnmatch.filter(os.listdir(args.evl_log), '*.log'))
+    if (len(target_pcs_path) == existing_log_files_count):
+        print("metric log files already exist")
+        # summarize the log files into 1
+        summarize_one_setup(args.evl_log, color=True)
+        print("Completed summary of evaluation")
         sys.exit()
 
     existing_metric_files = glob.glob(args.evl_log+"/*")

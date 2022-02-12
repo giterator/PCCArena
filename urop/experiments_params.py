@@ -1,5 +1,6 @@
 dir = '/mnt/d/NUS/Volumetric_Video_Streaming_UROP/dynamic_pc_data/'
 VPCC_dir = '/mnt/c/Users/prana/My Documents/GitHub/mpeg-pcc-tmc2/'
+PCCArena_dir ='/mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/'
 
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}

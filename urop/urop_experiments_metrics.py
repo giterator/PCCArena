@@ -126,8 +126,8 @@ def compute_metrics(scope_curr_experiment_path, scope_experiment, scope_dataset_
 
     if not Path(metrics_path).is_dir():
         os.mkdir(metrics_path)
-    for f in os.listdir(metrics_path):
-        os.remove(os.path.join(metrics_path, f))
+    # for f in os.listdir(metrics_path):
+    #     os.remove(os.path.join(metrics_path, f))
 
     ply_compare_multiple_cmd = ['python3', 'ply_compare_multiple.py',
                                 reference_path,
@@ -135,7 +135,7 @@ def compute_metrics(scope_curr_experiment_path, scope_experiment, scope_dataset_
                                 os.path.join(compressed_path, experiment_name + ".bin"),
                                 metrics_path]
 
-    sp.run(ply_compare_multiple_cmd)
+    sp.run(ply_compare_multiple_cmd, cwd=PCCArena_dir)
 
 
 def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_dataset_name):

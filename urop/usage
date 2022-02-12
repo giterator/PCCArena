@@ -1,6 +1,6 @@
 
 Do setup of PCCArena
 Modify frameCount argument value in common_encode_cmd
-Set dir & VPCC_dir as directory for dynamic_pc_data & VPCC directory respectively
+Set dir & VPCC_dir &PCCArena_dir as directory for dynamic_pc_data & VPCC directory & PCCArena directory respectively
 Activate pcc_arena environment
-python3 urop/urop_experiments_metrics.py
+python3 PCCArena/urop/urop_experiments_metrics.py
