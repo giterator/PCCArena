@@ -2,6 +2,7 @@
 # |- charts
 # |
 # |- longdress
+# |   |-charts
 # |   |- Ply
 # |   |- experiments
 # |       |- exp1
@@ -12,6 +13,7 @@
 # |           |-charts
 # |
 # |-loot
+# |   |-charts
 # |   |- Ply
 # |   |- experiments
 # |       |- exp1
@@ -22,6 +24,7 @@
 # |           |-charts
 # |
 # |- redandblack
+# |   |-charts
 # |   |- Ply
 # |   |- experiments
 # |       |- exp1
@@ -32,6 +35,7 @@
 # |           |-charts
 # |
 # |- solder
+# |   |-charts
 # |   |- Ply
 # |   |- experiments
 # |       |- exp1
