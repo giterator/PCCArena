@@ -7,6 +7,8 @@ import sys
 import glob
 from evaluator.summary import summarize_one_setup
 import fnmatch
+import multiprocessing
+from joblib import Parallel, delayed
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -44,7 +46,6 @@ if __name__ == '__main__':
                 ref_pcs_path.append(os.path.join(root, file))
                 ref_pcs_name.append(file[:-4])
 
-
     target_pcs_path = []
     target_pcs_name = []
     for root, dirs, files in os.walk(args.target_folder):
@@ -52,7 +53,6 @@ if __name__ == '__main__':
             if file.endswith('.ply'):
                 target_pcs_path.append(os.path.join(root, file))
                 target_pcs_name.append(file[:-4])
-
 
     # run loop of evaluate_and_log to generate set of log files
 
@@ -70,10 +70,26 @@ if __name__ == '__main__':
         print("Completed summary of evaluation")
         sys.exit()
 
-    existing_metric_files = glob.glob(args.evl_log+"/*")
+    existing_metric_files = glob.glob(args.evl_log + "/*")
 
     for f in existing_metric_files:
         os.remove(f)
+
+    ################################################################
+    #generating the list of files is done out of order, need to sort
+    ref_pcs_path.sort()
+    ref_pcs_name.sort()
+    target_pcs_path.sort()
+    target_pcs_name.sort()
+    # Parallel run of evaluate_and_log => UNTESTED
+    Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+        vpcc._evaluate_and_log(
+            ref_pcfile=ref_pcs_path[i],
+            target_pcfile=target_pcs_path[i],
+            evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
+            bin_file=args.target_bin)
+        for i in range(0, len(target_pcs_path))))
+    ################################################################
 
     for i in range(0, len(target_pcs_path)):
         vpcc._evaluate_and_log(
@@ -84,7 +100,6 @@ if __name__ == '__main__':
 
         print("Completed individual evaluation for frames: ", ref_pcs_name[i], " and ", target_pcs_name[i])
 
-    #summarize the log files into 1
+    # summarize the log files into 1
     summarize_one_setup(args.evl_log, color=True)
     print("Completed summary of evaluation")
-

@@ -54,6 +54,8 @@ import subprocess as sp
 import matplotlib.pyplot as plt
 import pandas as pd
 import matplotlib.ticker as mticker
+import multiprocessing
+from joblib import Parallel, delayed
 
 def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_name):
     experiment_name = scope_experiment['name']
@@ -271,6 +273,15 @@ if __name__ == '__main__':
         if not Path(experiments_path).is_dir():
             os.mkdir(experiments_path)
 
+        #############################################
+        # Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+        #     vpcc._evaluate_and_log(
+        #         ref_pcfile=ref_pcs_path[i],
+        #         target_pcfile=target_pcs_path[i],
+        #         evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
+        #         bin_file=args.target_bin)
+        #     for experiment in experiments))
+        #############################################
         for experiment in experiments:
             # if particualar experiment folder doesnt exist, create it within the experiment folder
             curr_experiment_path = os.path.join(experiments_path, experiment['name'])
