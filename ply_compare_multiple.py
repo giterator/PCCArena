@@ -83,22 +83,22 @@ if __name__ == '__main__':
     target_pcs_name.sort()
     # Parallel run of evaluate_and_log => UNTESTED
     Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
-        vpcc._evaluate_and_log(
+        vpcc._evaluate_and_log)(
             ref_pcfile=ref_pcs_path[i],
             target_pcfile=target_pcs_path[i],
             evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
             bin_file=args.target_bin)
-        for i in range(0, len(target_pcs_path))))
+        for i in range(0, len(target_pcs_path)))
     ################################################################
 
-    for i in range(0, len(target_pcs_path)):
-        vpcc._evaluate_and_log(
-            ref_pcfile=ref_pcs_path[i],
-            target_pcfile=target_pcs_path[i],
-            evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
-            bin_file=args.target_bin)
+    # for i in range(0, len(target_pcs_path)):
+    #     vpcc._evaluate_and_log(
+    #         ref_pcfile=ref_pcs_path[i],
+    #         target_pcfile=target_pcs_path[i],
+    #         evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
+    #         bin_file=args.target_bin)
 
-        print("Completed individual evaluation for frames: ", ref_pcs_name[i], " and ", target_pcs_name[i])
+    print("Completed individual evaluation for frames")
 
     # summarize the log files into 1
     summarize_one_setup(args.evl_log, color=True)

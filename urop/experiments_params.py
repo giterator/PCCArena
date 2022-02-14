@@ -19,10 +19,10 @@ common_encode_cmd = ['./bin/PccAppEncoder',
                      '--config=cfg/common/ctc-common.cfg',
                      '--config=cfg/condition/ctc-all-intra.cfg',
                      '--config=cfg/rate/ctc-r3.cfg',
-                     '--nbThread=40',
+                     '--nbThread=10',
                      '--colorTransform=0',
                      '--keepIntermediateFiles',
-                     '--frameCount=300',
+                     '--frameCount=1',
                      '--computeChecksum=0',
                      '--computeMetrics=0'
                      ]

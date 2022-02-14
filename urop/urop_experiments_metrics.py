@@ -263,6 +263,21 @@ def collate_quality_rate():
                     bbox_inches='tight')  # bbox prevents cutoff portions of image
 
 
+def single_vpcc_experiment(experiments_path, experiment, dataset_name):
+    # if particualar experiment folder doesnt exist, create it within the experiment folder
+    curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+    if not Path(curr_experiment_path).is_dir():
+        os.mkdir(curr_experiment_path)
+
+    execute_encode(curr_experiment_path, experiment,
+                   dataset_name)
+
+    print("Encoding done for: ", experiment['name'], " for dataset: ", dataset_name)
+
+    execute_decode(curr_experiment_path, experiment,
+                   dataset_name)
+
+    print("Decoding done for: ", experiment['name'], " for dataset: ", dataset_name)
 
 if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
@@ -274,37 +289,43 @@ if __name__ == '__main__':
             os.mkdir(experiments_path)
 
         #############################################
-        # Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
-        #     vpcc._evaluate_and_log(
-        #         ref_pcfile=ref_pcs_path[i],
-        #         target_pcfile=target_pcs_path[i],
-        #         evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
-        #         bin_file=args.target_bin)
-        #     for experiment in experiments))
+        Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+            single_vpcc_experiment)(experiments_path, experiment, dataset_name)
+            for experiment in experiments)
         #############################################
+        # for experiment in experiments:
+        #     # if particualar experiment folder doesnt exist, create it within the experiment folder
+        #     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+        #     if not Path(curr_experiment_path).is_dir():
+        #         os.mkdir(curr_experiment_path)
+        #
+        #
+        #     execute_encode(curr_experiment_path, experiment,
+        #                    dataset_name)
+        #
+        #     print("Encoding done for: ", experiment['name'], " for dataset: ", dataset_name)
+        #
+        #
+        #     execute_decode(curr_experiment_path, experiment,
+        #                    dataset_name)
+        #
+        #     print("Decoding done for: ", experiment['name'], " for dataset: ", dataset_name)
+
+            # compute_metrics(curr_experiment_path, experiment,
+            #                 dataset_name)
+            #
+            # print("Metrics computed and summarized for: ", experiment['name'], " for dataset: ", dataset_name)
+            #
+            # generate_indiv_charts(curr_experiment_path, experiment,
+            #                 dataset_name)
+            #
+            # print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
+
+#Compute metrics after VPCC is done for all experiments
+    for dataset_name in datasets:
+        experiments_path = os.path.join(dir, dataset_name, "experiments")
         for experiment in experiments:
-            # if particualar experiment folder doesnt exist, create it within the experiment folder
             curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-            if not Path(curr_experiment_path).is_dir():
-                os.mkdir(curr_experiment_path)
-
-            # f'--uncompressedDataPath={dir + "/" + }',
-            # f'--compressedStreamPath={bin_file}',
-            # f'--reconstructedDataPath={rec_file}',
-            # startframenumber
-            execute_encode(curr_experiment_path, experiment,
-                           dataset_name)
-
-            print("Encoding done for: ", experiment['name'], " for dataset: ", dataset_name)
-
-            # f'--compressedStreamPath={bin_file}',
-            # f'--reconstructedDataPath={rec_file}',
-            # startframenumber
-            execute_decode(curr_experiment_path, experiment,
-                           dataset_name)
-
-            print("Decoding done for: ", experiment['name'], " for dataset: ", dataset_name)
-
             compute_metrics(curr_experiment_path, experiment,
                             dataset_name)
 
@@ -314,7 +335,6 @@ if __name__ == '__main__':
                             dataset_name)
 
             print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
-
 
     collate_quality_charts()
     print("Generated collated quality metrics charts by dataset")

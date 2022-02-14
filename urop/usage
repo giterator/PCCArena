@@ -13,4 +13,4 @@ From ~ dir: python3 PCCArena/urop/urop_experiments_metrics.py
                     nohup python3 PCCArena/urop/urop_experiments_metrics.py &
 
 
-To view no. of thrweads in use by a pid: ps -o nlwp <pid>
+To view no. of threads in use by a pid: ps -o nlwp <pid>
