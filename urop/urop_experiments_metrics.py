@@ -270,10 +270,19 @@ def collate_quality_charts_without_quantize():
 
 
 def collate_quality_rate():
+    charts_path = os.path.join(dir, "charts/")
+
     # compute list of <dataset>_<experiment name> : bin_size
     exp_size = {}
     for dataset_name in datasets:
         experiments_path = os.path.join(dir, dataset_name, "experiments")
+
+        dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
+        if not Path(dataset_charts_path).is_dir():
+            os.mkdir(dataset_charts_path)
+        for f in os.listdir(dataset_charts_path):
+            os.remove(os.path.join(dataset_charts_path, f))
+
         for experiment in experiments:
             curr_experiment_path = os.path.join(experiments_path, experiment['name'])
             compressed_path = os.path.join(curr_experiment_path, "compressed")
@@ -282,7 +291,7 @@ def collate_quality_rate():
             #
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
-    charts_path = os.path.join(dir, "charts/")
+
     if not Path(charts_path).is_dir():
         os.mkdir(charts_path)
     for f in os.listdir(charts_path):
@@ -293,10 +302,6 @@ def collate_quality_rate():
         metric_name = metric_name_map[metric]
         for dataset_name in datasets:
             dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
-            if not Path(dataset_charts_path).is_dir():
-                os.mkdir(dataset_charts_path)
-            for f in os.listdir(dataset_charts_path):
-                os.remove(os.path.join(dataset_charts_path, f))
             # clear plot
             plt.clf()
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
