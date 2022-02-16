@@ -57,6 +57,7 @@ import matplotlib.ticker as mticker
 import multiprocessing
 from joblib import Parallel, delayed
 import numpy as np
+import shutil
 
 def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_name):
     experiment_name = scope_experiment['name']
@@ -272,11 +273,12 @@ def collate_quality_charts_without_quantize():
 def collate_quality_rate():
     charts_path = os.path.join(dir, "charts/")
 
+    if Path(charts_path).is_dir():
+        shutil.rmtree(charts_path)
+        
     if not Path(charts_path).is_dir():
         os.mkdir(charts_path)
-    for f in os.listdir(charts_path):
-        os.remove(os.path.join(charts_path, f))
-        
+
     # compute list of <dataset>_<experiment name> : bin_size
     exp_size = {}
     for dataset_name in datasets:
