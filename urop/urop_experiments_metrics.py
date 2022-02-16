@@ -153,6 +153,8 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
 
     if not Path(indiv_charts_path).is_dir():
         os.mkdir(indiv_charts_path)
+    for f in os.listdir(indiv_charts_path):
+        os.remove(os.path.join(indiv_charts_path, f))
 
     #open summary csv in metrics_path of the form <scope_dataset_name>_experiments_<experiment_name>_summary.csv
     #create chart for each column with y axis as metric, x axis as frame no. (based on star frame no.) => save in charts_path with name & chart title: <scope_dataset_name>_<experiment_name>_<metric>
@@ -188,6 +190,8 @@ def collate_quality_charts_only_quantize():
         #
         if not Path(charts_path).is_dir():
             os.mkdir(charts_path)
+        for f in os.listdir(charts_path):
+            os.remove(os.path.join(charts_path, f))
         #
         for metric in metric_name_map.keys():
             metric_name = metric_name_map[metric]
@@ -229,6 +233,8 @@ def collate_quality_charts_without_quantize():
         #
         if not Path(charts_path).is_dir():
             os.mkdir(charts_path)
+        for f in os.listdir(charts_path):
+            os.remove(os.path.join(charts_path, f))
         #
         for metric in metric_name_map.keys():
             metric_name = metric_name_map[metric]
@@ -279,6 +285,8 @@ def collate_quality_rate():
     charts_path = os.path.join(dir, "charts/")
     if not Path(charts_path).is_dir():
         os.mkdir(charts_path)
+    for f in os.listdir(charts_path):
+        os.remove(os.path.join(charts_path, f))
     #
     # for each metric:
     # for each experiment, get bin size, compute avg of metric
