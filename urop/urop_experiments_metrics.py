@@ -272,6 +272,11 @@ def collate_quality_charts_without_quantize():
 def collate_quality_rate():
     charts_path = os.path.join(dir, "charts/")
 
+    if not Path(charts_path).is_dir():
+        os.mkdir(charts_path)
+    for f in os.listdir(charts_path):
+        os.remove(os.path.join(charts_path, f))
+        
     # compute list of <dataset>_<experiment name> : bin_size
     exp_size = {}
     for dataset_name in datasets:
@@ -292,10 +297,7 @@ def collate_quality_rate():
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
 
-    if not Path(charts_path).is_dir():
-        os.mkdir(charts_path)
-    for f in os.listdir(charts_path):
-        os.remove(os.path.join(charts_path, f))
+
     #
     # for no quantized experiments
     for metric in metric_name_map.keys():
