@@ -1,6 +1,10 @@
-dir = '/mnt/d/NUS/Volumetric_Video_Streaming_UROP/dynamic_pc_data/'
-VPCC_dir = '/mnt/c/Users/prana/My Documents/GitHub/mpeg-pcc-tmc2/'
-PCCArena_dir ='/mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/'
+# dir = '/mnt/d/NUS/Volumetric_Video_Streaming_UROP/dynamic_pc_data/'
+# VPCC_dir = '/mnt/c/Users/prana/My Documents/GitHub/mpeg-pcc-tmc2/'
+# PCCArena_dir ='/mnt/d/NUS/Volumetric_Video_Streaming_UROP/PCCArena/'
+
+dir = '/home/p/pranav/dynamic_pc_data/'
+VPCC_dir = '/home/p/pranav/mpeg-pcc-tmc2/'
+PCCArena_dir = '/home/p/pranav/PCCArena/'
 
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
@@ -22,7 +26,7 @@ common_encode_cmd = ['./bin/PccAppEncoder',
                      '--nbThread=10',
                      '--colorTransform=0',
                      '--keepIntermediateFiles',
-                     '--frameCount=1',
+                     '--frameCount=300',
                      '--computeChecksum=0',
                      '--computeMetrics=0'
                      ]
