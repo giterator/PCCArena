@@ -275,7 +275,7 @@ def collate_quality_rate():
 
     if Path(charts_path).is_dir():
         shutil.rmtree(charts_path)
-        
+
     if not Path(charts_path).is_dir():
         os.mkdir(charts_path)
 
@@ -322,7 +322,9 @@ def collate_quality_rate():
                     avg_metric = df[metric].mean()
                     bin_size = exp_size[dataset_name + "_" + experiment['name']]
                     #add point to scatter plot
-                    plt.scatter(bin_size, avg_metric, label= experiment['name'])
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'])
+                    # annotate points
+                    plt.annotate("(" + bin_size + "," + avg_metric + ")", (bin_size, avg_metric))
 
             plt.grid()
             plt.legend()
@@ -351,7 +353,9 @@ def collate_quality_rate():
                     avg_metric = df[metric].mean()
                     bin_size = exp_size[dataset_name + "_" + experiment['name']]
                     #add point to scatter plot
-                    plt.scatter(bin_size, avg_metric, label= experiment['name'])
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'])
+                    #annotate points
+                    plt.annotate("(" + bin_size + "," + avg_metric + ")", (bin_size, avg_metric))
 
             plt.grid()
             plt.legend()
