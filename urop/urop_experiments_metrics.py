@@ -324,7 +324,7 @@ def collate_quality_rate():
                     #add point to scatter plot
                     plt.scatter(bin_size, avg_metric, label=experiment['name'])
                     # annotate points
-                    plt.annotate("(" + bin_size + "," + avg_metric + ")", (bin_size, avg_metric))
+                    plt.annotate("(" + str(bin_size) + "," + avg_metric + ")", (bin_size, avg_metric))
 
             plt.grid()
             plt.legend()
@@ -355,7 +355,7 @@ def collate_quality_rate():
                     #add point to scatter plot
                     plt.scatter(bin_size, avg_metric, label=experiment['name'])
                     #annotate points
-                    plt.annotate("(" + bin_size + "," + avg_metric + ")", (bin_size, avg_metric))
+                    plt.annotate("(" + str(bin_size) + "," + avg_metric + ")", (bin_size, avg_metric))
 
             plt.grid()
             plt.legend()
