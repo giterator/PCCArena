@@ -59,6 +59,16 @@ experiments = [
      'decode': common_decode_cmd
      },
 
+    {'name': '2DD_lodX=1_lodY=2_OM=4',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
+     'decode': common_decode_cmd
+     },
+
+    {'name': '2DD_lodX=1_lodY=2_OM=1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=1'],
+     'decode': common_decode_cmd
+     },
+
     # 3DD
     {'name': '3DD_2_noQuantize_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
