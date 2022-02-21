@@ -58,6 +58,7 @@ import multiprocessing
 from joblib import Parallel, delayed
 import numpy as np
 import shutil
+from adjustText import adjust_text
 
 def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_name):
     experiment_name = scope_experiment['name']
@@ -350,6 +351,7 @@ def collate_quality_rate():
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
             plt.xlabel("Rate (bytes)")
             plt.ylabel(metric_name)
+            texts = []
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
@@ -362,10 +364,11 @@ def collate_quality_rate():
                 #add point to scatter plot
                 plt.scatter(bin_size, avg_metric, label=experiment['name'])
                 # annotate points
-                plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric))
+                texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
             plt.legend()
+            adjust_text(texts)
             #save plot
             plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
 
