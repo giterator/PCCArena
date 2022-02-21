@@ -507,9 +507,9 @@ if __name__ == '__main__':
 
             print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
 
-    collate_quality_charts()
-    # collate_quality_charts_without_quantize()
-    # collate_quality_charts_only_quantize()
+    # collate_quality_charts()
+    collate_quality_charts_without_quantize()
+    collate_quality_charts_only_quantize()
     print("Generated collated quality metrics charts by dataset")
     #
     # collate metrics into quality vs rate
