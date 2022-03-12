@@ -161,7 +161,8 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
     #open summary csv in metrics_path of the form <scope_dataset_name>_experiments_<experiment_name>_summary.csv
     #create chart for each column with y axis as metric, x axis as frame no. (based on star frame no.) => save in charts_path with name & chart title: <scope_dataset_name>_<experiment_name>_<metric>
     df = pd.read_csv(metrics_path + scope_dataset_name + "_experiments_" + experiment_name + "_summary.csv")
-    df = df[['acd12_p2pt', 'acd21_p2pt', 'cd_p2pt', 'cdpsnr_p2pt', 'h_p2pt', 'y_cpsnr', 'u_cpsnr', 'v_cpsnr']]
+    # df = df[['acd12_p2pt', 'acd21_p2pt', 'cd_p2pt', 'cdpsnr_p2pt', 'h_p2pt', 'y_cpsnr', 'u_cpsnr', 'v_cpsnr']]
+    df = df[list(metric_name_map.keys())]
     # df['frame'] = df.index + int(start_frame_no[scope_dataset_name])
     # df = df.set_index(['frame'])
     #
