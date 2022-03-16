@@ -1,7 +1,7 @@
 import argparse
 
 from algs_wrapper.VPCC import VPCC
-
+import open3d as o3d
 import os
 import sys
 import glob
@@ -81,7 +81,7 @@ if __name__ == '__main__':
     ref_pcs_name.sort()
     target_pcs_path.sort()
     target_pcs_name.sort()
-    # Parallel run of evaluate_and_log => UNTESTED
+    ###############################################################
     Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
         vpcc._evaluate_and_log)(
             ref_pcfile=ref_pcs_path[i],

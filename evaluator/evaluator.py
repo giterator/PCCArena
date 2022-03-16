@@ -35,12 +35,12 @@ class Evaluator():
         self._log_running_time_and_filesize()
 
         ######################################################################################
-        ProjMetrics = ProjectionBasedMetrics(self._ref_pc, self._target_pc, self._o3d_vis)
+        # ProjMetrics = ProjectionBasedMetrics(self._ref_pc, self._target_pc, self._o3d_vis)
         ######################################################################################
         PointMetrics = PointBasedMetrics(self._ref_pc, self._target_pc)
 
         ######################################################################################
-        self._results += ProjMetrics.evaluate()
+        # self._results += ProjMetrics.evaluate()
         ######################################################################################
         self._results += PointMetrics.evaluate()
         
