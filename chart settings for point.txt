@@ -1,0 +1,19 @@
+split OM=1 and OM=4 charts for quality vs rate
+
+3DD - red
+quantize - triangle_down
+noQuantize - triangle_up
+downsample by 2 - filled
+downsample by 4 - hollow
+
+2DD - orange
+downscaleX only - square filled
+downscaleY only - diamond filled
+downscale both X&Y - A star-like symbol with 16 sides => gen with path
+downsample by 2 - filled
+downsample by 4 - hollow
+
+
+vanilla - blue circle, filled
+
+fields: colour, shape, fill/hollow

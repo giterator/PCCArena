@@ -53,7 +53,11 @@ import fnmatch
 import subprocess as sp
 import matplotlib.pyplot as plt
 import pandas as pd
+
 import matplotlib.ticker as mticker
+import matplotlib.path as mpath
+from matplotlib.lines import Line2D
+
 import multiprocessing
 from joblib import Parallel, delayed
 import numpy as np
@@ -336,13 +340,45 @@ def collate_quality_rate():
             curr_experiment_path = os.path.join(experiments_path, experiment['name'])
             compressed_path = os.path.join(curr_experiment_path, "compressed")
             bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
-            bin_size = os.path.getsize(bin_path)
+            # Getting size in MB
+            bin_size = os.path.getsize(bin_path) / (1024 * 1024)
             #
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
 
 
     # for combined experiments
+    # for metric in metric_name_map.keys():
+    #     metric_name = metric_name_map[metric]
+    #     for dataset_name in datasets:
+    #         dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
+    #         # clear plot
+    #         plt.clf()
+    #         plt.title(dataset_name + "_" + metric_name + "_VS_rate")
+    #         plt.xlabel("Rate (MB)")
+    #         plt.ylabel(metric_name)
+    #         texts = []
+    #         #
+    #         experiments_path = os.path.join(dir, dataset_name, "experiments")
+    #         for experiment in experiments:
+    #             curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+    #             metrics_path = os.path.join(curr_experiment_path, "metrics/")
+    #             df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+    #             #
+    #             avg_metric = df[metric].mean()
+    #             bin_size = exp_size[dataset_name + "_" + experiment['name']]
+    #             #add point to scatter plot
+    #             plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
+    #             # annotate points
+    #             texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+    #
+    #         plt.grid()
+    #         plt.legend()
+    #         adjust_text(texts)
+    #         #save plot
+    #         plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+
+    #splitting OM=1 & OM=4 charts
     for metric in metric_name_map.keys():
         metric_name = metric_name_map[metric]
         for dataset_name in datasets:
@@ -350,90 +386,60 @@ def collate_quality_rate():
             # clear plot
             plt.clf()
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
-            plt.xlabel("Rate (bytes)")
+            plt.xlabel("Rate (MB)")
             plt.ylabel(metric_name)
             texts = []
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
-                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-                metrics_path = os.path.join(curr_experiment_path, "metrics/")
-                df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
-                #
-                avg_metric = df[metric].mean()
-                bin_size = exp_size[dataset_name + "_" + experiment['name']]
-                #add point to scatter plot
-                plt.scatter(bin_size, avg_metric, label=experiment['name'])
-                # annotate points
-                texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+                if 'OM=1' in experiment['name']:
+                    curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                    metrics_path = os.path.join(curr_experiment_path, "metrics/")
+                    df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                    #
+                    avg_metric = df[metric].mean()
+                    bin_size = exp_size[dataset_name + "_" + experiment['name']]
+                    #add point to scatter plot
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
+                    # annotate points
+                    texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
             plt.legend()
             adjust_text(texts)
             #save plot
-            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=1.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
 
-    #
-    # # for no quantized experiments
-    # for metric in metric_name_map.keys():
-    #     metric_name = metric_name_map[metric]
-    #     for dataset_name in datasets:
-    #         dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
-    #         # clear plot
-    #         plt.clf()
-    #         plt.title(dataset_name + "_" + metric_name + "_VS_rate")
-    #         plt.xlabel("Rate (bytes)")
-    #         plt.ylabel(metric_name)
-    #         #
-    #         experiments_path = os.path.join(dir, dataset_name, "experiments")
-    #         for experiment in experiments:
-    #             if "_Quantize=" not in experiment['name']:
-    #                 curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-    #                 metrics_path = os.path.join(curr_experiment_path, "metrics/")
-    #                 df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
-    #                 #
-    #                 avg_metric = df[metric].mean()
-    #                 bin_size = exp_size[dataset_name + "_" + experiment['name']]
-    #                 #add point to scatter plot
-    #                 plt.scatter(bin_size, avg_metric, label=experiment['name'])
-    #                 # annotate points
-    #                 plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric))
-    #
-    #         plt.grid()
-    #         plt.legend()
-    #         #save plot
-    #         plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_without_quantize.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
-    #
-    #
-    # # for only quantized experiments
-    # for metric in metric_name_map.keys():
-    #     metric_name = metric_name_map[metric]
-    #     for dataset_name in datasets:
-    #         dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
-    #         # clear plot
-    #         plt.clf()
-    #         plt.title(dataset_name + "_" + metric_name + "_VS_rate")
-    #         plt.xlabel("Rate (bytes)")
-    #         plt.ylabel(metric_name)
-    #         #
-    #         experiments_path = os.path.join(dir, dataset_name, "experiments")
-    #         for experiment in experiments:
-    #             if "_Quantize=" in experiment['name']:
-    #                 curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-    #                 metrics_path = os.path.join(curr_experiment_path, "metrics/")
-    #                 df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
-    #                 #
-    #                 avg_metric = df[metric].mean()
-    #                 bin_size = exp_size[dataset_name + "_" + experiment['name']]
-    #                 #add point to scatter plot
-    #                 plt.scatter(bin_size, avg_metric, label=experiment['name'])
-    #                 #annotate points
-    #                 plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric))
-    #
-    #         plt.grid()
-    #         plt.legend()
-    #         #save plot
-    #         plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_quantize.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+    for metric in metric_name_map.keys():
+        metric_name = metric_name_map[metric]
+        for dataset_name in datasets:
+            dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
+            # clear plot
+            plt.clf()
+            plt.title(dataset_name + "_" + metric_name + "_VS_rate")
+            plt.xlabel("Rate (MB)")
+            plt.ylabel(metric_name)
+            texts = []
+            #
+            experiments_path = os.path.join(dir, dataset_name, "experiments")
+            for experiment in experiments:
+                if 'OM=4' in experiment['name']:
+                    curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                    metrics_path = os.path.join(curr_experiment_path, "metrics/")
+                    df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                    #
+                    avg_metric = df[metric].mean()
+                    bin_size = exp_size[dataset_name + "_" + experiment['name']]
+                    #add point to scatter plot
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
+                    # annotate points
+                    texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+
+            plt.grid()
+            plt.legend()
+            adjust_text(texts)
+            #save plot
+            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=4.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
 
 def single_vpcc_experiment(experiments_path, experiment, dataset_name):
     # if particualar experiment folder doesnt exist, create it within the experiment folder

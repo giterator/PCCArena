@@ -6,6 +6,9 @@
 # VPCC_dir = '/home/p/pranav/mpeg-pcc-tmc2/'
 # PCCArena_dir = '/home/p/pranav/PCCArena/'
 
+import matplotlib.path as mpath
+from matplotlib.lines import Line2D
+
 dir = '/temp/pranav/dynamic_pc_data/'
 VPCC_dir = '/temp/pranav/mpeg-pcc-tmc2/'
 PCCArena_dir = '/temp/pranav/PCCArena/'
@@ -21,12 +24,12 @@ metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1-2) p2pt',
                    'y_cpsnr': 'Y-CPSNR (dB)',
                    'u_cpsnr': 'U-CPSNR (dB)',
                    'v_cpsnr': 'V-CPSNR (dB)',
-##############################################2D metrics######################################################
-                   'y_psnr': 'Y-PSNR (dB)',
-                   'cb_psnr': 'Cb-PSNR (dB)',
-                   'cr_psnr': 'Cr-PSNR (dB)',
-                   'ssim': 'SSIM',
-                   'vmaf': 'VMAF'
+                   ##############################################2D metrics######################################################
+                   # 'y_psnr': 'Y-PSNR (dB)',
+                   # 'cb_psnr': 'Cb-PSNR (dB)',
+                   # 'cr_psnr': 'Cr-PSNR (dB)',
+                   # 'ssim': 'SSIM',
+                   # 'vmaf': 'VMAF'
                    }
 
 common_encode_cmd = ['./bin/PccAppEncoder',
@@ -56,71 +59,123 @@ experiments = [
     # vanilla
     {'name': 'vanilla_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': 'o',
+     'facecolors': 'blue',
+     'edgecolors': 'blue'
      },
 
     # 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'orange',
+     'edgecolors': 'orange'
      },
 
     {'name': '2DD_lodX=2_lodY=1_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'orange',
+     'edgecolors': 'orange'
      },
 
     {'name': '2DD_lodX=1_lodY=2_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'orange',
+     'edgecolors': 'orange'
      },
 
     {'name': '2DD_lodX=1_lodY=2_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=1'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'orange',
+     'edgecolors': 'orange'
      },
     #############################################################
     {'name': '2DD_lodX=2_lodY=2_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(16),
+     'facecolors': 'none',
+     'edgecolors': 'orange'
      },
 
     {'name': '2DD_lodX=2_lodY=2_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=1'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(16),
+     'facecolors': 'none',
+     'edgecolors': 'orange'
      },
     #############################################################
 
     # 3DD
     {'name': '3DD_2_noQuantize_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'red',
+     'edgecolors': 'red'
      },
 
     {'name': '3DD_2_Quantize=2_OM=4',
      'encode': common_encode_cmd +
                ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
-     'decode': common_decode_cmd + ['--upscalePC=2']
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'red',
+     'edgecolors': 'red'
      },
 
     {'name': '3DD_2_noQuantize_OM=1',
      'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'red',
+     'edgecolors': 'red'
      },
 
     {'name': '3DD_2_Quantize=2_OM=1',
      'encode': common_encode_cmd +
                ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
-     'decode': common_decode_cmd + ['--upscalePC=2']
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'red',
+     'edgecolors': 'red'
      },
     ########################################################
     {'name': '3DD_4_noQuantize_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'none',
+     'edgecolors': 'red'
      },
     {'name': '3DD_4_noQuantize_OM=1',
      'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=4', '--threeDD'],
-     'decode': common_decode_cmd
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'none',
+     'edgecolors': 'red'
      }
     #########################################################
 ]
