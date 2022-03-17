@@ -518,7 +518,7 @@ if __name__ == '__main__':
             for f in os.listdir(view_dir):
                 os.remove(os.path.join(view_dir, f))
             ##
-            Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+            Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
                 generate_png_from_ply)(os.path.join(ply_dir, ply), 3, os.path.join(view_dir, os.path.splitext(ply)[0]))
                                                          for ply in os.listdir(ply_dir))
             # for ply in os.listdir(ply_dir):
@@ -540,7 +540,7 @@ if __name__ == '__main__':
                 for f in os.listdir(view_dir):
                     os.remove(os.path.join(view_dir, f))
                 ##
-                Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+                Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
                     generate_png_from_ply)(os.path.join(ply_dir, ply), 3, os.path.join(view_dir, os.path.splitext(ply)[0]))
                                                              for ply in os.listdir(ply_dir))
 

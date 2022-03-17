@@ -82,7 +82,7 @@ if __name__ == '__main__':
     target_pcs_path.sort()
     target_pcs_name.sort()
     ###############################################################
-    Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+    Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
         vpcc._evaluate_and_log)(
             ref_pcfile=ref_pcs_path[i],
             target_pcfile=target_pcs_path[i],
