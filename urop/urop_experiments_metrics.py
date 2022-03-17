@@ -49,6 +49,8 @@
 from pathlib import Path
 import os
 from experiments_params import *
+from view_dependent_metrics import *
+
 import fnmatch
 import subprocess as sp
 import matplotlib.pyplot as plt
@@ -501,6 +503,48 @@ if __name__ == '__main__':
             #                 dataset_name)
             #
             # print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
+
+#Compute and store screenshots of 6 views of all PCs
+    #for reference plys
+    for dataset_name in datasets:
+        ply_dir = os.path.join(dir, dataset_name, "Ply")
+        view_dir = os.path.join(dir, dataset_name, "views")
+        if not Path(view_dir).is_dir():
+            os.mkdir(view_dir)
+        num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
+        num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
+
+        if num_views != 6 * num_ref:
+            for f in os.listdir(view_dir):
+                os.remove(os.path.join(view_dir, f))
+            ##
+            Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+                generate_png_from_ply)(ply, "3", os.path.join(view_dir, os.path.splitext(ply)[0]))
+                                                         for ply in os.listdir(ply_dir))
+            # for ply in os.listdir(ply_dir):
+            #     generate_png_from_ply(ply, "3", os.path.join(view_dir, os.path.splitext(ply)[0]))
+
+    # for decompressed plys
+    for dataset_name in datasets:
+        experiments_path = os.path.join(dir, dataset_name, "experiments")
+        for experiment in experiments:
+            curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+            ply_dir = os.path.join(curr_experiment_path, "decompressed")
+            view_dir = os.path.join(curr_experiment_path, "views")
+            if not Path(view_dir).is_dir():
+                os.mkdir(view_dir)
+            num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
+            num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
+
+            if num_views != 6 * num_ref:
+                for f in os.listdir(view_dir):
+                    os.remove(os.path.join(view_dir, f))
+                ##
+                Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+                    generate_png_from_ply)(ply, "3", os.path.join(view_dir, os.path.splitext(ply)[0]))
+                                                             for ply in os.listdir(ply_dir))
+
+
 
 #Compute metrics after VPCC is done for all experiments
     for dataset_name in datasets:

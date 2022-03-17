@@ -15,6 +15,6 @@ From ~ dir: python3 PCCArena/urop/urop_experiments_metrics.py
 
 To view no. of threads in use by a pid: ps -o nlwp <pid>
 
-Print file names of comrpessed bin files: find . -type f \( -name "*.bin" -and -not -name "*occupancy*" -and -not -name "*attribute*" -and -not -name "*geometry*" \)
+Print file names of compressed bin files: find . -type f \( -name "*.bin" -and -not -name "*occupancy*" -and -not -name "*attribute*" -and -not -name "*geometry*" \)
 
-Copy all comrpessed binaries into dir: cp `find . -type f \( -name "*.bin" -and -not -name "*occupancy*" -and -not -name "*attribute*" -and -not -name "*geometry*" \)` ./bin/
+Copy all compressed binaries into dir: cp `find . -type f \( -name "*.bin" -and -not -name "*occupancy*" -and -not -name "*attribute*" -and -not -name "*geometry*" \)` ./bin/

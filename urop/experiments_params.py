@@ -12,6 +12,7 @@ from matplotlib.lines import Line2D
 dir = '/temp/pranav/dynamic_pc_data/'
 VPCC_dir = '/temp/pranav/mpeg-pcc-tmc2/'
 PCCArena_dir = '/temp/pranav/PCCArena/'
+magick_dir = PCCArena_dir + 'urop/'
 
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
@@ -25,11 +26,21 @@ metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1-2) p2pt',
                    'u_cpsnr': 'U-CPSNR (dB)',
                    'v_cpsnr': 'V-CPSNR (dB)',
                    ##############################################2D metrics######################################################
-                   # 'y_psnr': 'Y-PSNR (dB)',
-                   # 'cb_psnr': 'Cb-PSNR (dB)',
-                   # 'cr_psnr': 'Cr-PSNR (dB)',
-                   # 'ssim': 'SSIM',
-                   # 'vmaf': 'VMAF'
+                   'ssim_up': 'SSIM up',
+                   'ssim_down': 'SSIM down',
+                   'ssim_left': 'SSIM left',
+                   'ssim_right': 'SSIM right',
+                   'ssim_front': 'SSIM front',
+                   'ssim_back': 'SSIM back',
+
+                   'psnr_up': 'PSNR up',
+                   'psnr_down': 'PSNR down',
+                   'psnr_left': 'PSNR left',
+                   'psnr_right': 'PSNR right',
+                   'psnr_front': 'PSNR front',
+                   'psnr_back': 'PSNR back',
+                   # 'ssim': 'Avg SSIM',
+                   # 'psnr': 'Avg PSNR'
                    }
 
 common_encode_cmd = ['./bin/PccAppEncoder',

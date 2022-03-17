@@ -39,7 +39,7 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
         'y_psnr':      'Y-PSNR (dB)                    : ',
         'cb_psnr':     'Cb-PSNR (dB)                   : ',
         'cr_psnr':     'Cr-PSNR (dB)                   : ',
-        'ssim':        'SSIM                           : ',
+        # 'ssim':        'SSIM                           : ',
         'vmaf':        'VMAF                           : ',
         'acd12_p2pt':  'Asym. Chamfer dist. (1->2) p2pt: ',
         'acd21_p2pt':  'Asym. Chamfer dist. (2->1) p2pt: ',
@@ -51,6 +51,23 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
         'cd_p2pl':     'Chamfer dist.              p2pl: ',
         'cdpsnr_p2pl': 'CD-PSNR (dB)               p2pl: ',
         'h_p2pl':      'Hausdorff distance         p2pl: ',
+        ##
+        'ssim_up': 'SSIM up: ',
+        'ssim_down': 'SSIM down: ',
+        'ssim_left': 'SSIM left: ',
+        'ssim_right': 'SSIM right: ',
+        'ssim_front': 'SSIM front: ',
+        'ssim_back': 'SSIM back: ',
+
+        'psnr_up': 'PSNR up: ',
+        'psnr_down': 'PSNR down: ',
+        'psnr_left': 'PSNR left: ',
+        'psnr_right': 'PSNR right: ',
+        'psnr_front': 'PSNR front: ',
+        'psnr_back': 'PSNR back: ',
+        # 'ssim':        'Avg SSIM: ',
+        # 'psnr':        'Avg PSNR: '
+
     }
     if color is True:
         chosen_metrics_text.update({

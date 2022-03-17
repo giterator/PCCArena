@@ -7,7 +7,7 @@ import open3d as o3d
 from utils._version import __version__
 from evaluator.metrics.PointBasedMetrics import PointBasedMetrics
 from evaluator.metrics.ProjectionBasedMetrics import ProjectionBasedMetrics
-
+from urop.view_dependent_metrics import *
 
 class Evaluator():
     def __init__(
@@ -36,11 +36,13 @@ class Evaluator():
 
         ######################################################################################
         # ProjMetrics = ProjectionBasedMetrics(self._ref_pc, self._target_pc, self._o3d_vis)
+        view_metrics = view_dependent_metrics(self._ref_pc, self._target_pc)
         ######################################################################################
         PointMetrics = PointBasedMetrics(self._ref_pc, self._target_pc)
 
         ######################################################################################
         # self._results += ProjMetrics.evaluate()
+        self._results += view_metrics
         ######################################################################################
         self._results += PointMetrics.evaluate()
         
