@@ -343,7 +343,7 @@ def collate_quality_rate():
             # Getting size in MB
             bin_size = os.path.getsize(bin_path) / (1024.0 * 1024.0)
             #Convert size to 3 decimal places
-            bin_size = "{:.3f}".format(bin_size)
+            # bin_size = "{:.3f}".format(bin_size)
             #
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
@@ -404,7 +404,7 @@ def collate_quality_rate():
                     #add point to scatter plot
                     plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
-                    texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+                    texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
             plt.legend()
@@ -435,7 +435,8 @@ def collate_quality_rate():
                     #add point to scatter plot
                     plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
-                    texts.append(plt.annotate("(" + str(int(bin_size)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+                    texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
+                        np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
             plt.legend()
