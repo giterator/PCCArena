@@ -341,7 +341,9 @@ def collate_quality_rate():
             compressed_path = os.path.join(curr_experiment_path, "compressed")
             bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
             # Getting size in MB
-            bin_size = os.path.getsize(bin_path) / (1024 * 1024)
+            bin_size = os.path.getsize(bin_path) / (1024.0 * 1024.0)
+            #Convert size to 3 decimal places
+            bin_size = "{:.3f}".format(bin_size)
             #
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
