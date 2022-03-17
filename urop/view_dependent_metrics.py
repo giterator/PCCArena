@@ -127,7 +127,7 @@ def caculate_metric_ignore_background(
 
 def generate_png_from_ply(
         ply: str,  # ply file path
-        point_size: str,  # default is 3
+        point_size: float,  # default is 3
         saved_path: str
 ):
     pointcloud = o3d.io.read_point_cloud(ply)
