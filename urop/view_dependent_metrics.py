@@ -177,21 +177,21 @@ def generate_png_from_ply(
     img = render.render_to_image()
     o3d.io.write_image(saved_path + "down.png", img, 9)
 
-    # back
+    # front
     render.setup_camera(
         60, camera_point, camera_point + [0, 0, camera],
         [0, 1, 0]
     )
     img = render.render_to_image()
-    o3d.io.write_image(saved_path + "back.png", img, 9)
+    o3d.io.write_image(saved_path + "front.png", img, 9)
 
-    # front
+    # back
     render.setup_camera(
         60, camera_point, camera_point + [0, 0, -camera],
         [0, 1, 0]
     )
     img = render.render_to_image()
-    o3d.io.write_image(saved_path + "front.png", img, 9)
+    o3d.io.write_image(saved_path + "back.png", img, 9)
     # # note that the new rendering method may fail without err message
     # # I just retry until it success
     # while(os.path.getsize(filename_png + "006.png") < file_size):
