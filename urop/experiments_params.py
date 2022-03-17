@@ -107,7 +107,7 @@ experiments = [
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
      'decode': common_decode_cmd,
 
-     'marker': mpath.Path.unit_regular_star(16),
+     'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
      'edgecolors': 'orange'
      },
@@ -116,7 +116,7 @@ experiments = [
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=1'],
      'decode': common_decode_cmd,
 
-     'marker': mpath.Path.unit_regular_star(16),
+     'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
      'edgecolors': 'orange'
      },
