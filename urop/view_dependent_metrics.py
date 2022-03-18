@@ -4,7 +4,6 @@ import open3d as o3d  # 0.14.1, don't use 0.15
 import open3d.visualization.rendering as rendering
 import numpy as np
 import os
-import logging
 
 magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
@@ -27,17 +26,17 @@ def view_dependent_metrics(ref_pc_path, target_pc_path):
     temp_img_path_name = os.path.join(parent_target_dir, 'views/', name_without_extension + "_TEMP")
 
     ssim_up, psnr_up = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'up.png',
-                                                         target_path + 'up.png', temp_img_path_name)
+                                                         target_path + 'up.png', temp_img_path_name + 'up')
     ssim_down, psnr_down = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'down.png',
-                                                             target_path + 'down.png', temp_img_path_name)
+                                                             target_path + 'down.png', temp_img_path_name + 'down')
     ssim_left, psnr_left = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'left.png',
-                                                         target_path + 'left.png', temp_img_path_name)
+                                                         target_path + 'left.png', temp_img_path_name + 'left')
     ssim_right, psnr_right = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'right.png',
-                                                         target_path + 'right.png', temp_img_path_name)
+                                                         target_path + 'right.png', temp_img_path_name + 'right')
     ssim_front, psnr_front = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'front.png',
-                                                         target_path + 'front.png', temp_img_path_name)
+                                                         target_path + 'front.png', temp_img_path_name + 'front')
     ssim_back, psnr_back = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'back.png',
-                                                         target_path + 'back.png', temp_img_path_name)
+                                                         target_path + 'back.png', temp_img_path_name + 'back')
 
     return [f"SSIM up: {ssim_up}",
             f"SSIM down: {ssim_down}",
@@ -108,7 +107,7 @@ def caculate_metric_ignore_background(
             f"{mask_file_name}_ssim.png"  #f"hat_diff_{output_filename}
         ], capture_output=True, text=True
     )
-    logging.info("out1 msg: ", out1.stderr)
+    print("out1 msg: " + out1.stderr, flush=True)
 
     out2 = sp.run(
         [
@@ -124,8 +123,8 @@ def caculate_metric_ignore_background(
         ],
         capture_output=True, text=True
     )
-    logging.info("out2 msg: ", out2.stderr)
-    
+    print("out2 msg: " + out2.stderr, flush=True)
+
     # remove intermediate file
     sp.run(["rm", f"{output_filename}"])
     sp.run(["rm", f"{mask_file_name}_ssim.png"])
