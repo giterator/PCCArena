@@ -120,6 +120,8 @@ def caculate_metric_ignore_background(
         ],
         capture_output=True, text=True
     )
+    print("out1 msg: ", out1)
+    print("out2 msg: ", out2)
     # remove intermediate file
     sp.run(["rm", f"{output_filename}"])
     sp.run(["rm", f"hat_diff_{output_filename}"])
