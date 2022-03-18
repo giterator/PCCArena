@@ -4,6 +4,8 @@ import open3d as o3d  # 0.14.1, don't use 0.15
 import open3d.visualization.rendering as rendering
 import numpy as np
 import os
+import logging
+
 magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
 
@@ -106,6 +108,8 @@ def caculate_metric_ignore_background(
             f"{mask_file_name}_ssim.png"  #f"hat_diff_{output_filename}
         ], capture_output=True, text=True
     )
+    logging.info("out1 msg: ", out1.stderr)
+
     out2 = sp.run(
         [
             f"{binary_path}/magick",
@@ -120,8 +124,8 @@ def caculate_metric_ignore_background(
         ],
         capture_output=True, text=True
     )
-    print("out1 msg: ", out1.stderr)
-    print("out2 msg: ", out2.stderr)
+    logging.info("out2 msg: ", out2.stderr)
+    
     # remove intermediate file
     sp.run(["rm", f"{output_filename}"])
     sp.run(["rm", f"{mask_file_name}_ssim.png"])
