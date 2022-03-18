@@ -4,7 +4,7 @@ import open3d as o3d  # 0.14.1, don't use 0.15
 import open3d.visualization.rendering as rendering
 import numpy as np
 import os
-magick_dir = '/temp/pranav/PCCArena/' + 'urop/'
+magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
 
 def view_dependent_metrics(ref_pc_path, target_pc_path):
