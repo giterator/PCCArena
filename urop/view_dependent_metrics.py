@@ -103,7 +103,7 @@ def caculate_metric_ignore_background(
             "-read-mask",
             f"{output_filename}",
             input_filename1, input_filename2,
-            # f"hat_diff_{output_filename}"
+            f"{mask_file_name}_ssim.png"  #f"hat_diff_{output_filename}
         ], capture_output=True, text=True
     )
     out2 = sp.run(
@@ -116,7 +116,7 @@ def caculate_metric_ignore_background(
             f"{output_filename}",
             input_filename1,
             input_filename2,
-            # f"hat_diff_{output_filename}"
+            f"{mask_file_name}_psnr.png"      #f"hat_diff_{output_filename}
         ],
         capture_output=True, text=True
     )
@@ -124,7 +124,8 @@ def caculate_metric_ignore_background(
     print("out2 msg: ", out2)
     # remove intermediate file
     sp.run(["rm", f"{output_filename}"])
-    # sp.run(["rm", f"hat_diff_{output_filename}"])
+    sp.run(["rm", f"{mask_file_name}_ssim.png"])
+    sp.run(["rm", f"{mask_file_name}_psnr.png"])
     return float(out1.stderr), float(out2.stderr)
 
 
