@@ -98,6 +98,11 @@ def caculate_metric_ignore_background(
     out1 = sp.run(
         [
             f"{binary_path}/magick",
+            #
+            "-limit",
+            "thread",
+            "1",
+            #
             "compare",
             "-metric",
             "ssim",
@@ -112,6 +117,11 @@ def caculate_metric_ignore_background(
     out2 = sp.run(
         [
             f"{binary_path}/magick",
+            #
+            "-limit",
+            "thread",
+            "1",
+            #
             "compare",
             "-metric",
             "psnr",
