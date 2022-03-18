@@ -10,6 +10,8 @@ magick_dir = '/temp/pranav/PCCArena/' + 'urop/'
 def view_dependent_metrics(ref_pc_path, target_pc_path):
     ref_dir, ref_file_name = os.path.split(ref_pc_path)
     name_without_extension = os.path.splitext(ref_file_name)[0]
+    subs = name_without_extension.split('_')
+    name_without_extension = subs[0] + "_dec_" + subs[2]
 
     parent_ref_dir = os.path.abspath(os.path.join(ref_dir, '..'))
     ground_truth_path = os.path.join(parent_ref_dir, 'views/', name_without_extension)
