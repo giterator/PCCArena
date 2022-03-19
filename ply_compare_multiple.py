@@ -122,7 +122,7 @@ if __name__ == '__main__':
 
         #multithread writing of 2D metrics to file
         Parallel(n_jobs=30)(delayed(write_metric_to_file)(
-            args.evl_path + "metrics_" + ref_pcs_path[i] + "_" + target_pcs_path[i] + ".txt", results[i]) for i in
+            args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".txt", results[i]) for i in
                             range(0, len(target_pcs_path)))
 
     print("Completed individual evaluation for frames")
