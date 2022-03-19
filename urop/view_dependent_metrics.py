@@ -84,13 +84,13 @@ def caculate_metric_ignore_background(
     # Note that we assume two input files have the same dimension
     img2 = cv.imread(input_filename2)
 
-    print("file names for parallel PSNR_SSIM: ", flush=True)
-    print(input_filename1, flush=True)
-    print(input_filename2, flush=True)
-    print(output_filename_ssim, flush=True)
-    print(output_filename_psnr, flush=True)
-    print(f"{mask_file_name}_ssim.png", flush=True)
-    print(f"{mask_file_name}_psnr.png\n", flush=True)
+    # print("file names for parallel PSNR_SSIM: ", flush=True)
+    # print(input_filename1, flush=True)
+    # print(input_filename2, flush=True)
+    # print(output_filename_ssim, flush=True)
+    # print(output_filename_psnr, flush=True)
+    # print(f"{mask_file_name}_ssim.png", flush=True)
+    # print(f"{mask_file_name}_psnr.png\n", flush=True)
 
     grey = 127
     threshold = 1.1  # background flactuate in new open3d rendering method
@@ -117,6 +117,15 @@ def caculate_metric_ignore_background(
 
     cv.imwrite(output_filename_ssim, img)  # output mask file
     cv.imwrite(output_filename_psnr, img)  # output mask file
+
+    if not os.path.exists(output_filename_ssim):
+        print("SSIM MASK IS NOT PRESENT AFTER WRITING: ", output_filename_ssim)
+    if not os.path.exists(output_filename_psnr):
+        print("PSNR MASK IS NOT PRESENT AFTER WRITING", output_filename_psnr)
+    if not os.path.exists(input_filename1):
+        print("INPUT FILE1 IS NOT PRESENT", input_filename1)
+    if not os.path.exists(input_filename2):
+        print("INPUT FILE 2 IS NOT PRESENT", input_filename2)
 
     out1 = sp.run(
         [
