@@ -120,12 +120,11 @@ if __name__ == '__main__':
         pool.close()
         pool.join()
 
-        for i in range(0, len(target_pcs_path)):
-            store_file = args.evl_path + "metrics_" + ref_pcs_path[i] + "_" + target_pcs_path[i] + ".txt"
-            with open(store_file, 'w') as f:
-                str_write = '\n'.join(results[i])
-                f.write(str_write)  # overwrites contents
-                
+        #multithread writing of 2D metrics to file
+        Parallel(n_jobs=30)(delayed(write_metric_to_file)(
+            args.evl_path + "metrics_" + ref_pcs_path[i] + "_" + target_pcs_path[i] + ".txt", results[i]) for i in
+                            range(0, len(target_pcs_path)))
+
     print("Completed individual evaluation for frames")
 
     # del all csv files

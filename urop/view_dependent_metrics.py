@@ -7,6 +7,10 @@ import os
 
 magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
+def write_metric_to_file(file_path, data):
+    with open(file_path, 'w') as f:
+        str_write = '\n'.join(data)
+        f.write(str_write)  # overwrites contents
 
 def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     ref_dir, ref_file_name = os.path.split(ref_pc_path)
