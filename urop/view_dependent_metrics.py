@@ -8,14 +8,14 @@ import os
 magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
 
-def view_dependent_metrics(ref_pc_path, target_pc_path):
+def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     ref_dir, ref_file_name = os.path.split(ref_pc_path)
     name_without_extension = os.path.splitext(ref_file_name)[0]
 
     parent_ref_dir = os.path.abspath(os.path.join(ref_dir, '..'))
     ground_truth_path = os.path.join(parent_ref_dir, 'views/', name_without_extension)
 
-    #modify name as decompressed ply has dec not vox10 in name
+    # modify name as decompressed ply has dec not vox10 in name
     subs = name_without_extension.split('_')
     name_without_extension = subs[0] + "_dec_" + subs[2]
     target_dir, target_file_name = os.path.split(target_pc_path)
@@ -30,34 +30,40 @@ def view_dependent_metrics(ref_pc_path, target_pc_path):
     ssim_down, psnr_down = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'down.png',
                                                              target_path + 'down.png', temp_img_path_name + 'down')
     ssim_left, psnr_left = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'left.png',
-                                                         target_path + 'left.png', temp_img_path_name + 'left')
+                                                             target_path + 'left.png', temp_img_path_name + 'left')
     ssim_right, psnr_right = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'right.png',
-                                                         target_path + 'right.png', temp_img_path_name + 'right')
+                                                               target_path + 'right.png', temp_img_path_name + 'right')
     ssim_front, psnr_front = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'front.png',
-                                                         target_path + 'front.png', temp_img_path_name + 'front')
+                                                               target_path + 'front.png', temp_img_path_name + 'front')
     ssim_back, psnr_back = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'back.png',
-                                                         target_path + 'back.png', temp_img_path_name + 'back')
+                                                             target_path + 'back.png', temp_img_path_name + 'back')
 
     avg_ssim = (ssim_up + ssim_down + ssim_left + ssim_right + ssim_front + ssim_back) / 6.0
     avg_psnr = (psnr_up + psnr_down + psnr_left + psnr_right + psnr_front + psnr_back) / 6.0
 
-    return [f"SSIM up: {ssim_up}",
-            f"SSIM down: {ssim_down}",
-            f"SSIM left: {ssim_left}",
-            f"SSIM right: {ssim_right}",
-            f"SSIM front: {ssim_front}",
-            f"SSIM back: {ssim_back}",
-            #
-            f"PSNR up: {psnr_up}",
-            f"PSNR down: {psnr_down}",
-            f"PSNR left: {psnr_left}",
-            f"PSNR right: {psnr_right}",
-            f"PSNR front: {psnr_front}",
-            f"PSNR back: {psnr_back}",
+    lines = [f"SSIM up: {ssim_up}",
+             f"SSIM down: {ssim_down}",
+             f"SSIM left: {ssim_left}",
+             f"SSIM right: {ssim_right}",
+             f"SSIM front: {ssim_front}",
+             f"SSIM back: {ssim_back}",
+             #
+             f"PSNR up: {psnr_up}",
+             f"PSNR down: {psnr_down}",
+             f"PSNR left: {psnr_left}",
+             f"PSNR right: {psnr_right}",
+             f"PSNR front: {psnr_front}",
+             f"PSNR back: {psnr_back}",
 
-            f"Avg PSNR: {avg_psnr}",
-            f"Avg SSIM: {avg_ssim}",
-            "\n"]
+             f"Avg PSNR: {avg_psnr}",
+             f"Avg SSIM: {avg_ssim}",
+             "\n"]
+
+    store_file = evl_path + "metrics_" + ref_pc_path + "_" + target_pc_path + ".txt"
+
+    with open(store_file, 'w') as f:
+        str_write = '\n'.join(lines)
+        f.write(str_write)  # overwrites contents
 
     # return [f"Avg SSIM: {avg_ssim}",
     #         f"Avg PSNR: {avg_psnr}",
@@ -70,12 +76,20 @@ def caculate_metric_ignore_background(
         input_filename2: str,  # target
         mask_file_name: str  # tmp file name for mask background
 ):
-    output_filename = f"{mask_file_name}_mask.png"
+    output_filename_ssim = f"{mask_file_name}_mask_ssim.png"
+    output_filename_psnr = f"{mask_file_name}_mask_psnr.png"
 
     img = cv.imread(input_filename1)
     rows, cols, _ = img.shape
     # Note that we assume two input files have the same dimension
     img2 = cv.imread(input_filename2)
+
+    # print("file names for parallel PSNR_SSIM: ")
+    # print(input_filename1)
+    # print(input_filename2)
+    # print(output_filename)
+    # print(f"{mask_file_name}_ssim.png")
+    # print(f"{mask_file_name}_psnr.png")
 
     grey = 127
     threshold = 1.1  # background flactuate in new open3d rendering method
@@ -100,7 +114,9 @@ def caculate_metric_ignore_background(
                 img.itemset((i, j, 1), 255)
                 img.itemset((i, j, 2), 255)
 
-    cv.imwrite(output_filename, img)  # output mask file
+    cv.imwrite(output_filename_ssim, img)  # output mask file
+    cv.imwrite(output_filename_psnr, img)  # output mask file
+
     out1 = sp.run(
         [
             f"{binary_path}/magick",
@@ -108,9 +124,9 @@ def caculate_metric_ignore_background(
             "-metric",
             "ssim",
             "-read-mask",
-            f"{output_filename}",
+            f"{output_filename_ssim}",
             input_filename1, input_filename2,
-            f"{mask_file_name}_ssim.png"  #f"hat_diff_{output_filename}
+            f"{mask_file_name}_ssim.png"  # f"hat_diff_{output_filename}
         ], capture_output=True, text=True
     )
     # print("out1 msg: " + out1.stderr, flush=True)
@@ -122,17 +138,18 @@ def caculate_metric_ignore_background(
             "-metric",
             "psnr",
             "-read-mask",
-            f"{output_filename}",
+            f"{output_filename_psnr}",
             input_filename1,
             input_filename2,
-            f"{mask_file_name}_psnr.png"      #f"hat_diff_{output_filename}
+            f"{mask_file_name}_psnr.png"  # f"hat_diff_{output_filename}
         ],
         capture_output=True, text=True
     )
     # print("out2 msg: " + out2.stderr, flush=True)
 
     # remove intermediate file
-    sp.run(["rm", f"{output_filename}"])
+    sp.run(["rm", f"{output_filename_ssim}"])
+    sp.run(["rm", f"{output_filename_psnr}"])
     sp.run(["rm", f"{mask_file_name}_ssim.png"])
     sp.run(["rm", f"{mask_file_name}_psnr.png"])
     return float(out1.stderr), float(out2.stderr)

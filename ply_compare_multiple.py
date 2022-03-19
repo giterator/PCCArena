@@ -102,13 +102,10 @@ if __name__ == '__main__':
     ### Computing PSNR & SSIM ###
     existing_txt_count = len(fnmatch.filter(os.listdir(args.evl_log), '*.txt'))
     if len(target_pcs_path) != existing_txt_count:
-        for i in range(0, len(target_pcs_path)):
-            lines = view_dependent_metrics(ref_pcs_path[i], target_pcs_path[i])
-            store_file = args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".txt"
-
-            with open(store_file, 'w') as f:
-                str_write = '\n'.join(lines)
-                f.write(str_write)  # overwrites contents
+        # for i in range(0, len(target_pcs_path)):
+        #     view_dependent_metrics(ref_pcs_path[i], target_pcs_path[i], args.evl_log)
+        Parallel(n_jobs=30)(delayed(view_dependent_metrics)(ref_pcs_path[i], target_pcs_path[i], args.evl_log) for i in
+                            range(0, len(target_pcs_path)))
 
     print("Completed individual evaluation for frames")
 
