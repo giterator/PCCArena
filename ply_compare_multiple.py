@@ -107,7 +107,8 @@ if __name__ == '__main__':
             store_file = args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".txt"
 
             with open(store_file, 'w') as f:
-                f.write(lines)  # overwrites contents
+                str_write = '\n'.join(lines)
+                f.write(str_write)  # overwrites contents
 
     print("Completed individual evaluation for frames")
 
