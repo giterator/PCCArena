@@ -20,3 +20,7 @@ Print file names of compressed bin files: find . -type f \( -name "*.bin" -and -
 Copy all compressed binaries into dir: cp `find . -type f \( -name "*.bin" -and -not -name "*occupancy*" -and -not -name "*attribute*" -and -not -name "*geometry*" \)` ./bin/
 
 DELETE all metric folders: find . -name "metrics" | xargs rm -R
+
+
+
+

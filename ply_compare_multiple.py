@@ -104,9 +104,15 @@ if __name__ == '__main__':
     if len(target_pcs_path) != existing_txt_count:
         # for i in range(0, len(target_pcs_path)):
         #     view_dependent_metrics(ref_pcs_path[i], target_pcs_path[i], args.evl_log)
-        Parallel(n_jobs=30)(delayed(view_dependent_metrics)(ref_pcs_path[i], target_pcs_path[i], args.evl_log) for i in
-                            range(0, len(target_pcs_path)))
 
+        # Parallel(n_jobs=30)(delayed(view_dependent_metrics)(ref_pcs_path[i], target_pcs_path[i], args.evl_log) for i in
+        #                     range(0, len(target_pcs_path)))
+        pool = multiprocessing.Pool(processes=30)
+        for i in range(0, len(target_pcs_path)):
+            pool.apply_async(view_dependent_metrics,
+                             args=(ref_pcs_path[i], target_pcs_path[i], args.evl_log))
+        pool.close()
+        pool.join()
     print("Completed individual evaluation for frames")
 
     # del all csv files
