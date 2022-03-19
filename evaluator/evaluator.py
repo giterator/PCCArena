@@ -36,13 +36,13 @@ class Evaluator():
 
         ######################################################################################
         # ProjMetrics = ProjectionBasedMetrics(self._ref_pc, self._target_pc, self._o3d_vis)
-        view_metrics = view_dependent_metrics(self._ref_pc, self._target_pc)
+        # view_metrics = view_dependent_metrics(self._ref_pc, self._target_pc)
         ######################################################################################
         PointMetrics = PointBasedMetrics(self._ref_pc, self._target_pc)
 
         ######################################################################################
         # self._results += ProjMetrics.evaluate()
-        self._results += view_metrics
+        # self._results += view_metrics
         ######################################################################################
         self._results += PointMetrics.evaluate()
         

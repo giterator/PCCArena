@@ -10,7 +10,8 @@ from scipy.io import savemat
 
 from utils.file_io import glob_file
 from utils._version import __version__
-
+import os
+import sys
 logger = logging.getLogger(__name__)
 
 # [TODO]
@@ -29,6 +30,10 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
         True for dataset with color, false otherwise. Defaults to false.
     """
     log_files = glob_file(log_dir, '**/*.log', fullpath=True)
+    txt_files = glob_file(log_dir, '**/*.txt', fullpath=True)
+
+    log_files.sort()
+    txt_files.sort()
 
     # [TODO] add reconstructed point cloud path to .csv
     chosen_metrics_text = {
@@ -36,11 +41,11 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
         'encT':        'Encoding time (s)           : ',
         'decT':        'Decoding time (s)           : ',
         'bpp':         'bpp (bits per point)        : ',
-        'y_psnr':      'Y-PSNR (dB)                    : ',
-        'cb_psnr':     'Cb-PSNR (dB)                   : ',
-        'cr_psnr':     'Cr-PSNR (dB)                   : ',
+        # 'y_psnr':      'Y-PSNR (dB)                    : ',
+        # 'cb_psnr':     'Cb-PSNR (dB)                   : ',
+        # 'cr_psnr':     'Cr-PSNR (dB)                   : ',
         # 'ssim':        'SSIM                           : ',
-        'vmaf':        'VMAF                           : ',
+        # 'vmaf':        'VMAF                           : ',
         'acd12_p2pt':  'Asym. Chamfer dist. (1->2) p2pt: ',
         'acd21_p2pt':  'Asym. Chamfer dist. (2->1) p2pt: ',
         'cd_p2pt':     'Chamfer dist.              p2pt: ',
@@ -65,6 +70,10 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
         'psnr_right': 'PSNR right: ',
         'psnr_front': 'PSNR front: ',
         'psnr_back': 'PSNR back: ',
+
+        'avg_ssim': 'Avg SSIM: ',
+        'avg_psnr': 'Avg PSNR: ',
+
         # 'ssim':        'Avg SSIM: ',
         # 'psnr':        'Avg PSNR: '
 
@@ -85,8 +94,12 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
     found_val = {key: [] for key in chosen_metrics.keys()}
 
     # Parsing data from each log file
-    for log in log_files:
-        with open(log, 'r') as f:
+    for i in range(0, len(log_files)):#log in log_files:
+        if os.path.splitext(log_files[i])[0] != os.path.splitext(txt_files[i])[0]:
+            print("TXT & LOG FILE NAMES DONT MATCH, SUMMARY IS TAINTED")
+            sys.exit()
+
+        with open(log_files[i], 'r') as f:
             flines = f.readlines()
             for metric, pattern in chosen_metrics.items():
                 isfound = False
@@ -105,8 +118,25 @@ def summarize_one_setup(log_dir: Union[str, Path], color: bool = False) -> None:
                         isfound = True
                         break
                 if not isfound:
-                    # Not found that metric result
-                    found_val[metric].append(None)
+                    # Not found that metric result, check in txt file i.e psnr & ssim
+                    with open(txt_files[i], 'r') as t:
+                        tlines = t.readlines()
+                        for tline in tlines:
+                            m = re.search(f'(?<={pattern}).*', tline)
+                            if m:
+                                if m.group() == 'inf':
+                                    found_val[metric].append(np.inf)
+                                elif m.group() == 'nan':
+                                    found_val[metric].append(np.nan)
+                                else:
+                                    if metric == 'pc_file':
+                                        found_val[metric].append(str(m.group()))
+                                    else:
+                                        found_val[metric].append(float(m.group()))
+                                isfound = True
+                                break
+                        if not isfound: #metric that doenst exist in log & txt
+                            found_val[metric].append(None)
 
     # Save raw data (with None and np.inf) into .csv file
     alg_name = Path(log_dir).parents[2].stem

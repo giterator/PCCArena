@@ -39,8 +39,9 @@ metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1-2) p2pt',
                    'psnr_right': 'PSNR right',
                    'psnr_front': 'PSNR front',
                    'psnr_back': 'PSNR back',
-                   # 'ssim': 'Avg SSIM',
-                   # 'psnr': 'Avg PSNR'
+
+                   'avg_ssim': 'Avg SSIM',
+                   'avg_psnr': 'Avg PSNR'
                    }
 
 common_encode_cmd = ['./bin/PccAppEncoder',

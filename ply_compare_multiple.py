@@ -9,6 +9,7 @@ from evaluator.summary import summarize_one_setup
 import fnmatch
 import multiprocessing
 from joblib import Parallel, delayed
+from urop.view_dependent_metrics import *
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -63,32 +64,32 @@ if __name__ == '__main__':
         sys.exit()
 
     existing_log_files_count = len(fnmatch.filter(os.listdir(args.evl_log), '*.log'))
-    if (len(target_pcs_path) == existing_log_files_count):
-        print("metric log files already exist")
-        # summarize the log files into 1
-        summarize_one_setup(args.evl_log, color=True)
-        print("Completed summary of evaluation")
-        sys.exit()
+    # if (len(target_pcs_path) == existing_log_files_count):
+    #     print("metric log files already exist")
+    #     # summarize the log files into 1
+    #     summarize_one_setup(args.evl_log, color=True)
+    #     print("Completed summary of evaluation")
+    #     sys.exit()
+    if len(target_pcs_path) != existing_log_files_count:
+        # del all log files
+        existing_metric_files = glob.glob(args.evl_log + "/*.log")
+        for f in existing_metric_files:
+            os.remove(f)
 
-    existing_metric_files = glob.glob(args.evl_log + "/*")
-
-    for f in existing_metric_files:
-        os.remove(f)
-
-    ################################################################
-    #generating the list of files is done out of order, need to sort
-    ref_pcs_path.sort()
-    ref_pcs_name.sort()
-    target_pcs_path.sort()
-    target_pcs_name.sort()
-    ###############################################################
-    Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
-        vpcc._evaluate_and_log)(
+        ################################################################
+        # generating the list of files is done out of order, need to sort
+        ref_pcs_path.sort()
+        ref_pcs_name.sort()
+        target_pcs_path.sort()
+        target_pcs_name.sort()
+        ###############################################################
+        Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
+            vpcc._evaluate_and_log)(
             ref_pcfile=ref_pcs_path[i],
             target_pcfile=target_pcs_path[i],
             evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
             bin_file=args.target_bin)
-        for i in range(0, len(target_pcs_path)))
+                            for i in range(0, len(target_pcs_path)))
     ################################################################
 
     # for i in range(0, len(target_pcs_path)):
@@ -98,8 +99,22 @@ if __name__ == '__main__':
     #         evl_log=args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".log",
     #         bin_file=args.target_bin)
 
+    ### Computing PSNR & SSIM ###
+    existing_txt_count = len(fnmatch.filter(os.listdir(args.evl_log), '*.txt'))
+    if len(target_pcs_path) != existing_txt_count:
+        for i in range(0, len(target_pcs_path)):
+            lines = view_dependent_metrics(ref_pcs_path[i], target_pcs_path[i])
+            store_file = args.evl_log + "metrics_" + ref_pcs_name[i] + "_" + target_pcs_name[i] + ".txt"
+
+            with open(store_file, 'w') as f:
+                f.write(lines)  # overwrites contents
+
     print("Completed individual evaluation for frames")
 
+    # del all csv files
+    existing_metric_files = glob.glob(args.evl_log + "/*.csv")
+    for f in existing_metric_files:
+        os.remove(f)
     # summarize the log files into 1
     summarize_one_setup(args.evl_log, color=True)
     print("Completed summary of evaluation")

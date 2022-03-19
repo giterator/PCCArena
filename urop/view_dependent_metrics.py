@@ -38,6 +38,9 @@ def view_dependent_metrics(ref_pc_path, target_pc_path):
     ssim_back, psnr_back = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'back.png',
                                                          target_path + 'back.png', temp_img_path_name + 'back')
 
+    avg_ssim = (ssim_up + ssim_down + ssim_left + ssim_right + ssim_front + ssim_back) / 6.0
+    avg_psnr = (psnr_up + psnr_down + psnr_left + psnr_right + psnr_front + psnr_back) / 6.0
+
     return [f"SSIM up: {ssim_up}",
             f"SSIM down: {ssim_down}",
             f"SSIM left: {ssim_left}",
@@ -51,6 +54,9 @@ def view_dependent_metrics(ref_pc_path, target_pc_path):
             f"PSNR right: {psnr_right}",
             f"PSNR front: {psnr_front}",
             f"PSNR back: {psnr_back}",
+
+            f"Avg PSNR: {avg_psnr}",
+            f"Avg SSIM: {avg_ssim}",
             "\n"]
 
     # return [f"Avg SSIM: {avg_ssim}",
