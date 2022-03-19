@@ -84,12 +84,13 @@ def caculate_metric_ignore_background(
     # Note that we assume two input files have the same dimension
     img2 = cv.imread(input_filename2)
 
-    # print("file names for parallel PSNR_SSIM: ")
-    # print(input_filename1)
-    # print(input_filename2)
-    # print(output_filename)
-    # print(f"{mask_file_name}_ssim.png")
-    # print(f"{mask_file_name}_psnr.png")
+    print("file names for parallel PSNR_SSIM: ", flush=True)
+    print(input_filename1, flush=True)
+    print(input_filename2, flush=True)
+    print(output_filename_ssim, flush=True)
+    print(output_filename_psnr, flush=True)
+    print(f"{mask_file_name}_ssim.png", flush=True)
+    print(f"{mask_file_name}_psnr.png\n", flush=True)
 
     grey = 127
     threshold = 1.1  # background flactuate in new open3d rendering method
