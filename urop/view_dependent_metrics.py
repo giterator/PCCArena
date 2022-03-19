@@ -9,8 +9,9 @@ magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
 def write_metric_to_file(file_path, data):
     with open(file_path, 'w') as f:
-        str_write = '\n'.join(data)
-        f.write(str_write)  # overwrites contents
+        # str_write = '\n'.join(data)
+        f.write(data)  # overwrites contents
+        f.flush()
 
 def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     ref_dir, ref_file_name = os.path.split(ref_pc_path)
@@ -63,7 +64,8 @@ def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
              f"Avg SSIM: {avg_ssim}",
              "\n"]
 
-    return lines
+    ret = '\n'.join(lines)
+    return ret
 
 
     # return [f"Avg SSIM: {avg_ssim}",

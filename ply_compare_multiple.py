@@ -70,19 +70,21 @@ if __name__ == '__main__':
     #     summarize_one_setup(args.evl_log, color=True)
     #     print("Completed summary of evaluation")
     #     sys.exit()
+
+    ################################################################
+    # generating the list of files is done out of order, need to sort
+    ref_pcs_path.sort()
+    ref_pcs_name.sort()
+    target_pcs_path.sort()
+    target_pcs_name.sort()
+    ###############################################################
+
     if len(target_pcs_path) != existing_log_files_count:
         # del all log files
         existing_metric_files = glob.glob(args.evl_log + "/*.log")
         for f in existing_metric_files:
             os.remove(f)
 
-        ################################################################
-        # generating the list of files is done out of order, need to sort
-        ref_pcs_path.sort()
-        ref_pcs_name.sort()
-        target_pcs_path.sort()
-        target_pcs_name.sort()
-        ###############################################################
         Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
             vpcc._evaluate_and_log)(
             ref_pcfile=ref_pcs_path[i],
