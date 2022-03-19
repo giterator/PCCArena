@@ -104,11 +104,6 @@ def caculate_metric_ignore_background(
     out1 = sp.run(
         [
             f"{binary_path}/magick",
-            #
-            "-limit",
-            "thread",
-            "1",
-            #
             "compare",
             "-metric",
             "ssim",
@@ -118,16 +113,11 @@ def caculate_metric_ignore_background(
             f"{mask_file_name}_ssim.png"  #f"hat_diff_{output_filename}
         ], capture_output=True, text=True
     )
-    print("out1 msg: " + out1.stderr, flush=True)
+    # print("out1 msg: " + out1.stderr, flush=True)
 
     out2 = sp.run(
         [
             f"{binary_path}/magick",
-            #
-            "-limit",
-            "thread",
-            "1",
-            #
             "compare",
             "-metric",
             "psnr",
@@ -139,7 +129,7 @@ def caculate_metric_ignore_background(
         ],
         capture_output=True, text=True
     )
-    print("out2 msg: " + out2.stderr, flush=True)
+    # print("out2 msg: " + out2.stderr, flush=True)
 
     # remove intermediate file
     sp.run(["rm", f"{output_filename}"])
