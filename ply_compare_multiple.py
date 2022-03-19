@@ -107,12 +107,25 @@ if __name__ == '__main__':
 
         # Parallel(n_jobs=30)(delayed(view_dependent_metrics)(ref_pcs_path[i], target_pcs_path[i], args.evl_log) for i in
         #                     range(0, len(target_pcs_path)))
-        pool = multiprocessing.Pool(processes=30)
-        for i in range(0, len(target_pcs_path)):
-            pool.apply_async(view_dependent_metrics,
-                             args=(ref_pcs_path[i], target_pcs_path[i], args.evl_log))
+
+        # pool = multiprocessing.Pool(processes=30)
+        # for i in range(0, len(target_pcs_path)):
+        #     pool.apply_async(view_dependent_metrics,
+        #                      args=(ref_pcs_path[i], target_pcs_path[i], args.evl_log))
+        with multiprocessing.Pool(processes=30) as pool:
+            results = list(
+                pool.apply_async(view_dependent_metrics, args=(ref_pcs_path[i], target_pcs_path[i], args.evl_log)) for i
+                in range(0, len(target_pcs_path)))
+            results = [r.get() for r in results]
         pool.close()
         pool.join()
+
+        for i in range(0, len(target_pcs_path)):
+            store_file = args.evl_path + "metrics_" + ref_pcs_path[i] + "_" + target_pcs_path[i] + ".txt"
+            with open(store_file, 'w') as f:
+                str_write = '\n'.join(results[i])
+                f.write(str_write)  # overwrites contents
+                
     print("Completed individual evaluation for frames")
 
     # del all csv files
