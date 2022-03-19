@@ -64,6 +64,7 @@ def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     with open(store_file, 'w') as f:
         str_write = '\n'.join(lines)
         f.write(str_write)  # overwrites contents
+        f.flush()
 
     # return [f"Avg SSIM: {avg_ssim}",
     #         f"Avg PSNR: {avg_psnr}",
