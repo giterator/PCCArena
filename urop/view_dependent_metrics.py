@@ -119,13 +119,13 @@ def caculate_metric_ignore_background(
     cv.imwrite(output_filename_psnr, img)  # output mask file
 
     if not os.path.exists(output_filename_ssim):
-        print("SSIM MASK IS NOT PRESENT AFTER WRITING: ", output_filename_ssim)
+        print("SSIM MASK IS NOT PRESENT AFTER WRITING: ", output_filename_ssim, flush=True)
     if not os.path.exists(output_filename_psnr):
-        print("PSNR MASK IS NOT PRESENT AFTER WRITING", output_filename_psnr)
+        print("PSNR MASK IS NOT PRESENT AFTER WRITING", output_filename_psnr, flush=True)
     if not os.path.exists(input_filename1):
-        print("INPUT FILE1 IS NOT PRESENT", input_filename1)
+        print("INPUT FILE1 IS NOT PRESENT", input_filename1, flush=True)
     if not os.path.exists(input_filename2):
-        print("INPUT FILE 2 IS NOT PRESENT", input_filename2)
+        print("INPUT FILE 2 IS NOT PRESENT", input_filename2, flush=True)
 
     out1 = sp.run(
         [
