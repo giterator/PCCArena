@@ -78,6 +78,16 @@ experiments = [
      'edgecolors': 'blue'
      },
 
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=35',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=35'],
+     'decode': common_decode_cmd,
+
+     'marker': '*',
+     'facecolors': 'blue',
+     'edgecolors': 'blue'
+     },
+
     # 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
