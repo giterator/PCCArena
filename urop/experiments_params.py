@@ -13,7 +13,6 @@ dir = '/temp/pranav/dynamic_pc_data/'
 VPCC_dir = '/temp/pranav/mpeg-pcc-tmc2/'
 PCCArena_dir = '/temp/pranav/PCCArena/'
 
-
 datasets = ['longdress', 'loot', 'redandblack', 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
 
@@ -87,7 +86,35 @@ experiments = [
      'facecolors': 'blue',
      'edgecolors': 'blue'
      },
+    #########################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=34',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=34'],
+     'decode': common_decode_cmd,
 
+     'marker': 'p',
+     'facecolors': 'blue',
+     'edgecolors': 'blue'
+     },
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=35',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=35'],
+     'decode': common_decode_cmd,
+
+     'marker': 'P',
+     'facecolors': 'blue',
+     'edgecolors': 'blue'
+     },
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=34',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=34'],
+     'decode': common_decode_cmd,
+
+     'marker': 'X',
+     'facecolors': 'blue',
+     'edgecolors': 'blue'
+     },
+    #####################################################################
     # 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
