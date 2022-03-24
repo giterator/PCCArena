@@ -494,7 +494,7 @@ def vpcc_compute(dataset_name):
     if not Path(experiments_path).is_dir():
         os.mkdir(experiments_path)
 
-    Parallel(n_jobs=10)(delayed(
+    Parallel(n_jobs=30)(delayed(
         single_vpcc_experiment)(experiments_path, experiment, dataset_name)
                         for experiment in experiments)
 
@@ -503,7 +503,7 @@ if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
 
     ###########################################################################################
-    pool = multiprocessing.Pool(processes=30)
+    pool = multiprocessing.Pool(processes=10)
     pool.map(vpcc_compute, datasets)
     # with multiprocessing.Pool(processes=30) as pool:
     #     for dataset_name in datasets:
