@@ -494,9 +494,16 @@ def vpcc_compute(dataset_name):
     if not Path(experiments_path).is_dir():
         os.mkdir(experiments_path)
 
-    Parallel(n_jobs=30)(delayed(
-        single_vpcc_experiment)(experiments_path, experiment, dataset_name)
-                        for experiment in experiments)
+    # Parallel(n_jobs=30)(delayed(
+    #     single_vpcc_experiment)(experiments_path, experiment, dataset_name)
+    #                     for experiment in experiments)
+
+    pool = multiprocessing.Pool(processes=10)
+    for experiment in experiments:
+        pool.apply(single_vpcc_experiment, (experiments_path, experiment, dataset_name))
+    # pool.apply_async(runBamHashWorker, (element, ))
+    pool.close()
+    pool.join()
 
 
 if __name__ == '__main__':
