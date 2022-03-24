@@ -66,6 +66,7 @@ import numpy as np
 import shutil
 from adjustText import adjust_text
 
+
 def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_name):
     experiment_name = scope_experiment['name']
 
@@ -164,8 +165,8 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
     for f in os.listdir(indiv_charts_path):
         os.remove(os.path.join(indiv_charts_path, f))
 
-    #open summary csv in metrics_path of the form <scope_dataset_name>_experiments_<experiment_name>_summary.csv
-    #create chart for each column with y axis as metric, x axis as frame no. (based on star frame no.) => save in charts_path with name & chart title: <scope_dataset_name>_<experiment_name>_<metric>
+    # open summary csv in metrics_path of the form <scope_dataset_name>_experiments_<experiment_name>_summary.csv
+    # create chart for each column with y axis as metric, x axis as frame no. (based on star frame no.) => save in charts_path with name & chart title: <scope_dataset_name>_<experiment_name>_<metric>
     df = pd.read_csv(metrics_path + scope_dataset_name + "_experiments_" + experiment_name + "_summary.csv")
     # df = df[['acd12_p2pt', 'acd21_p2pt', 'cd_p2pt', 'cdpsnr_p2pt', 'h_p2pt', 'y_cpsnr', 'u_cpsnr', 'v_cpsnr']]
     df = df[list(metric_name_map.keys())]
@@ -173,15 +174,15 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
     # df = df.set_index(['frame'])
     #
     for metric in df.columns:
-        #clear plot
+        # clear plot
         plt.clf()
         plt.figure(figsize=(20, 8))
-        #set x axis to only show int
+        # set x axis to only show int
         plt.gca().xaxis.set_major_locator(mticker.MultipleLocator(1))
         #
         metric_name = metric_name_map[metric]
         y_points = df[metric].values
-        x_points = np.arange(start=1, stop=len(y_points)+1, step=1)
+        x_points = np.arange(start=1, stop=len(y_points) + 1, step=1)
         #
         plt.title(scope_dataset_name + "_" + experiment_name + "_" + metric_name)
         plt.xlabel("Frame Number")
@@ -189,7 +190,8 @@ def generate_indiv_charts(scope_curr_experiment_path, scope_experiment, scope_da
         plt.plot(x_points, y_points, marker='.')
         plt.grid()
         plt.xticks(x_points[::5], rotation='vertical')
-        plt.savefig(indiv_charts_path + scope_dataset_name + "_" + experiment_name + "_" + metric_name + ".png", bbox_inches='tight') #bbox prevents cutoff portions of image
+        plt.savefig(indiv_charts_path + scope_dataset_name + "_" + experiment_name + "_" + metric_name + ".png",
+                    bbox_inches='tight')  # bbox prevents cutoff portions of image
 
 
 def collate_quality_charts_only_quantize():
@@ -224,7 +226,7 @@ def collate_quality_charts_only_quantize():
                     df['frame'] = df.index + int(start_frame_no[dataset_name])
                     #
                     y_points = df[metric].values
-                    x_points = np.arange(start=1, stop=len(y_points)+1, step=1)
+                    x_points = np.arange(start=1, stop=len(y_points) + 1, step=1)
                     #
                     plt.plot(x_points, y_points, marker='.', label=experiment['name'])
                     # plt.legend()
@@ -235,8 +237,9 @@ def collate_quality_charts_only_quantize():
             plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined_quantize.png",
                         bbox_inches='tight')  # bbox prevents cutoff portions of image
 
+
 def collate_quality_charts_without_quantize():
-    #for each dataset, create new chart for quality metric, put all experiments wrt frame no. in the chart
+    # for each dataset, create new chart for quality metric, put all experiments wrt frame no. in the chart
     for dataset_name in datasets:
         charts_path = os.path.join(dir, dataset_name, "charts/")
         #
@@ -256,17 +259,18 @@ def collate_quality_charts_without_quantize():
             plt.xlabel("Frame Number")
             plt.ylabel(metric_name)
             #
-            #iterate through each experiment for the dataset_name, add to plot, use frame no. as index
+            # iterate through each experiment for the dataset_name, add to plot, use frame no. as index
             for experiment in experiments:
                 if "_Quantize=" not in experiment['name']:
                     experiments_path = os.path.join(dir, dataset_name, "experiments")
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
-                    df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                    df = pd.read_csv(
+                        metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
                     df['frame'] = df.index + int(start_frame_no[dataset_name])
                     #
                     y_points = df[metric].values
-                    x_points = np.arange(start=1, stop=len(y_points)+1, step=1)
+                    x_points = np.arange(start=1, stop=len(y_points) + 1, step=1)
                     #
                     plt.plot(x_points, y_points, marker='.', label=experiment['name'])
                     # plt.legend()
@@ -274,10 +278,12 @@ def collate_quality_charts_without_quantize():
                     plt.grid()
                 #
             plt.xticks(x_points[::5], rotation='vertical')
-            plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined_without_quantize.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+            plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined_without_quantize.png",
+                        bbox_inches='tight')  # bbox prevents cutoff portions of image
+
 
 def collate_quality_charts():
-    #for each dataset, create new chart for quality metric, put all experiments wrt frame no. in the chart
+    # for each dataset, create new chart for quality metric, put all experiments wrt frame no. in the chart
     for dataset_name in datasets:
         charts_path = os.path.join(dir, dataset_name, "charts/")
         #
@@ -297,7 +303,7 @@ def collate_quality_charts():
             plt.xlabel("Frame Number")
             plt.ylabel(metric_name)
             #
-            #iterate through each experiment for the dataset_name, add to plot, use frame no. as index
+            # iterate through each experiment for the dataset_name, add to plot, use frame no. as index
             for experiment in experiments:
                 experiments_path = os.path.join(dir, dataset_name, "experiments")
                 curr_experiment_path = os.path.join(experiments_path, experiment['name'])
@@ -306,7 +312,7 @@ def collate_quality_charts():
                 df['frame'] = df.index + int(start_frame_no[dataset_name])
                 #
                 y_points = df[metric].values
-                x_points = np.arange(start=1, stop=len(y_points)+1, step=1)
+                x_points = np.arange(start=1, stop=len(y_points) + 1, step=1)
                 #
                 plt.plot(x_points, y_points, marker='.', label=experiment['name'])
                 # plt.legend()
@@ -314,8 +320,8 @@ def collate_quality_charts():
                 plt.grid()
                 #
             plt.xticks(x_points[::5], rotation='vertical')
-            plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
-
+            plt.savefig(charts_path + "/" + dataset_name + "_" + metric_name + "_combined.png",
+                        bbox_inches='tight')  # bbox prevents cutoff portions of image
 
 
 def collate_quality_rate():
@@ -344,12 +350,11 @@ def collate_quality_rate():
             bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
             # Getting size in MB
             bin_size = os.path.getsize(bin_path) / (1024.0 * 1024.0)
-            #Convert size to 3 decimal places
+            # Convert size to 3 decimal places
             # bin_size = "{:.3f}".format(bin_size)
             #
             exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
-
 
     # for combined experiments
     # for metric in metric_name_map.keys():
@@ -382,7 +387,7 @@ def collate_quality_rate():
     #         #save plot
     #         plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
 
-    #splitting OM=1 & OM=4 charts
+    # splitting OM=1 & OM=4 charts
     for metric in metric_name_map.keys():
         metric_name = metric_name_map[metric]
         for dataset_name in datasets:
@@ -399,20 +404,24 @@ def collate_quality_rate():
                 if 'OM=1' in experiment['name']:
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
-                    df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                    df = pd.read_csv(
+                        metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
                     #
                     avg_metric = df[metric].mean()
                     bin_size = exp_size[dataset_name + "_" + experiment['name']]
-                    #add point to scatter plot
-                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
+                    # add point to scatter plot
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'],
+                                edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
-                    texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
+                    texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
+                        np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
             plt.legend()
             adjust_text(texts)
-            #save plot
-            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=1.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+            # save plot
+            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=1.png",
+                        bbox_inches='tight')  # bbox prevents cutoff portions of image
 
     for metric in metric_name_map.keys():
         metric_name = metric_name_map[metric]
@@ -430,12 +439,14 @@ def collate_quality_rate():
                 if 'OM=4' in experiment['name']:
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
-                    df = pd.read_csv(metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
+                    df = pd.read_csv(
+                        metrics_path + dataset_name + "_experiments_" + experiment['name'] + "_summary.csv")
                     #
                     avg_metric = df[metric].mean()
                     bin_size = exp_size[dataset_name + "_" + experiment['name']]
-                    #add point to scatter plot
-                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'], edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
+                    # add point to scatter plot
+                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'],
+                                edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
                     texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
                         np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
@@ -443,8 +454,10 @@ def collate_quality_rate():
             plt.grid()
             plt.legend()
             adjust_text(texts)
-            #save plot
-            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=4.png", bbox_inches='tight')  # bbox prevents cutoff portions of image
+            # save plot
+            plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=4.png",
+                        bbox_inches='tight')  # bbox prevents cutoff portions of image
+
 
 def single_vpcc_experiment(experiments_path, experiment, dataset_name):
     # if particualar experiment folder doesnt exist, create it within the experiment folder
@@ -462,50 +475,42 @@ def single_vpcc_experiment(experiments_path, experiment, dataset_name):
 
     print("Decoding done for: ", experiment['name'], " for dataset: ", dataset_name)
 
+
+def vpcc_compute(dataset_name):
+    experiments_path = os.path.join(dir, dataset_name, "experiments")
+    if not Path(experiments_path).is_dir():
+        os.mkdir(experiments_path)
+
+    Parallel(n_jobs=10)(delayed(
+        single_vpcc_experiment)(experiments_path, experiment, dataset_name)
+                        for experiment in experiments)
+
+
 if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
 
-    for dataset_name in datasets:
-        # if experiments folder doesnt exist, create one for each dataset
-        experiments_path = os.path.join(dir, dataset_name, "experiments")
-        if not Path(experiments_path).is_dir():
-            os.mkdir(experiments_path)
+    ###########################################################################################
+    with multiprocessing.Pool(processes=30) as pool:
+        list(pool.apply_async(vpcc_compute, args=dataset_name)
+             for dataset_name in datasets)
+    pool.close()
+    pool.join()
 
-        #############################################
-        Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
-            single_vpcc_experiment)(experiments_path, experiment, dataset_name)
-            for experiment in experiments)
-        #############################################
-        # for experiment in experiments:
-        #     # if particualar experiment folder doesnt exist, create it within the experiment folder
-        #     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-        #     if not Path(curr_experiment_path).is_dir():
-        #         os.mkdir(curr_experiment_path)
-        #
-        #
-        #     execute_encode(curr_experiment_path, experiment,
-        #                    dataset_name)
-        #
-        #     print("Encoding done for: ", experiment['name'], " for dataset: ", dataset_name)
-        #
-        #
-        #     execute_decode(curr_experiment_path, experiment,
-        #                    dataset_name)
-        #
-        #     print("Decoding done for: ", experiment['name'], " for dataset: ", dataset_name)
+    # for dataset_name in datasets:
+    #     # if experiments folder doesnt exist, create one for each dataset
+    #     experiments_path = os.path.join(dir, dataset_name, "experiments")
+    #     if not Path(experiments_path).is_dir():
+    #         os.mkdir(experiments_path)
+    #
+    #     #############################################
+    #     Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+    #         single_vpcc_experiment)(experiments_path, experiment, dataset_name)
+    #         for experiment in experiments)
 
-            # compute_metrics(curr_experiment_path, experiment,
-            #                 dataset_name)
-            #
-            # print("Metrics computed and summarized for: ", experiment['name'], " for dataset: ", dataset_name)
-            #
-            # generate_indiv_charts(curr_experiment_path, experiment,
-            #                 dataset_name)
-            #
-            # print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
+    ###########################################################################################
 
-#Compute and store screenshots of 6 views of all PCs
-    #for reference plys
+    # Compute and store screenshots of 6 views of all PCs
+    # for reference plys
     for dataset_name in datasets:
         ply_dir = os.path.join(dir, dataset_name, "Ply")
         view_dir = os.path.join(dir, dataset_name, "views")
@@ -518,9 +523,9 @@ if __name__ == '__main__':
             for f in os.listdir(view_dir):
                 os.remove(os.path.join(view_dir, f))
             ##
-            Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
+            Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
                 generate_png_from_ply)(os.path.join(ply_dir, ply), 3, os.path.join(view_dir, os.path.splitext(ply)[0]))
-                                                         for ply in os.listdir(ply_dir))
+                                for ply in os.listdir(ply_dir))
             # for ply in os.listdir(ply_dir):
             #     generate_png_from_ply(ply, "3", os.path.join(view_dir, os.path.splitext(ply)[0]))
 
@@ -540,13 +545,12 @@ if __name__ == '__main__':
                 for f in os.listdir(view_dir):
                     os.remove(os.path.join(view_dir, f))
                 ##
-                Parallel(n_jobs=30)(delayed( #multiprocessing.cpu_count()
-                    generate_png_from_ply)(os.path.join(ply_dir, ply), 3, os.path.join(view_dir, os.path.splitext(ply)[0]))
-                                                             for ply in os.listdir(ply_dir))
+                Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
+                    generate_png_from_ply)(os.path.join(ply_dir, ply), 3,
+                                           os.path.join(view_dir, os.path.splitext(ply)[0]))
+                                    for ply in os.listdir(ply_dir))
 
-
-
-#Compute metrics after VPCC is done for all experiments
+    # Compute metrics after VPCC is done for all experiments
     for dataset_name in datasets:
         experiments_path = os.path.join(dir, dataset_name, "experiments")
         for experiment in experiments:
@@ -557,9 +561,10 @@ if __name__ == '__main__':
             print("Metrics computed and summarized for: ", experiment['name'], " for dataset: ", dataset_name)
 
             generate_indiv_charts(curr_experiment_path, experiment,
-                            dataset_name)
+                                  dataset_name)
 
-            print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ", dataset_name)
+            print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ",
+                  dataset_name)
 
     # collate_quality_charts()
     collate_quality_charts_without_quantize()
