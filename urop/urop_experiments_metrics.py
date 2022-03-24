@@ -503,11 +503,13 @@ if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
 
     ###########################################################################################
-    with multiprocessing.Pool(processes=30) as pool:
-        list(pool.apply_async(vpcc_compute, args=dataset_name)
-             for dataset_name in datasets)
-    pool.close()
-    pool.join()
+    pool = multiprocessing.Pool(processes=30)
+    pool.map(vpcc_compute, datasets)
+    # with multiprocessing.Pool(processes=30) as pool:
+    #     for dataset_name in datasets:
+    #         pool.apply_async(vpcc_compute, args=dataset_name)
+    # pool.close()
+    # pool.join()
 
     # for dataset_name in datasets:
     #     # if experiments folder doesnt exist, create one for each dataset
