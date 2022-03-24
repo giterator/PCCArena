@@ -67,12 +67,23 @@ common_decode_cmd = ['./bin/PccAppDecoder',
 
 # array of dicts where each dict has 3 keys: folder name, encoder command, decoder command
 experiments = [
-    # vanilla
+    # vanilla r3
     {'name': 'vanilla_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4'],
      'decode': common_decode_cmd,
 
      'marker': 'o',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': datasets
+     },
+
+    # vanilla r2
+    {'name': 'vanilla_r2',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r2.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
      'facecolors': 'blue',
      'edgecolors': 'blue',
      'data': datasets
@@ -118,6 +129,72 @@ experiments = [
      'facecolors': 'blue',
      'edgecolors': 'blue',
      'data': datasets
+     },
+    #####################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=28_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=28', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': '>',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['longdress']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=25_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=25', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': '<',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['loot', 'soldier']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=32',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=32'],
+     'decode': common_decode_cmd,
+
+     'marker': 'v',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=30_AQP=38',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=38'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['longdress', 'soldier']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=29_AQP=39',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=29', '--attributeQP=39'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['loot']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=40',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=40'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
      },
     #####################################################################
     # 2DD
