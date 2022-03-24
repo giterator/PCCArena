@@ -510,24 +510,29 @@ if __name__ == '__main__':
     # logging.basicConfig(filename="latest_run.log", level=logging.INFO)
 
     ###########################################################################################
-    pool = multiprocessing.Pool(processes=10)
-    pool.map(vpcc_compute, datasets)
+    pool = multiprocessing.Pool(processes=30)
+    # pool.map(vpcc_compute, datasets)
+
     # with multiprocessing.Pool(processes=30) as pool:
     #     for dataset_name in datasets:
     #         pool.apply_async(vpcc_compute, args=dataset_name)
     # pool.close()
     # pool.join()
 
-    # for dataset_name in datasets:
-    #     # if experiments folder doesnt exist, create one for each dataset
-    #     experiments_path = os.path.join(dir, dataset_name, "experiments")
-    #     if not Path(experiments_path).is_dir():
-    #         os.mkdir(experiments_path)
-    #
-    #     #############################################
-    #     Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
-    #         single_vpcc_experiment)(experiments_path, experiment, dataset_name)
-    #         for experiment in experiments)
+    for dataset_name in datasets:
+        # if experiments folder doesnt exist, create one for each dataset
+        experiments_path = os.path.join(dir, dataset_name, "experiments")
+        if not Path(experiments_path).is_dir():
+            os.mkdir(experiments_path)
+
+        #############################################
+        # Parallel(n_jobs=multiprocessing.cpu_count())(delayed(
+        #     single_vpcc_experiment)(experiments_path, experiment, dataset_name)
+        #     for experiment in experiments)
+        for experiment in experiments:
+            pool.apply(single_vpcc_experiment, (experiments_path, experiment, dataset_name))
+    pool.close()
+    pool.join()
 
     ###########################################################################################
 
