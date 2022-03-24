@@ -530,7 +530,7 @@ if __name__ == '__main__':
         #     single_vpcc_experiment)(experiments_path, experiment, dataset_name)
         #     for experiment in experiments)
         for experiment in experiments:
-            pool.apply(single_vpcc_experiment, (experiments_path, experiment, dataset_name))
+            pool.apply_async(single_vpcc_experiment, (experiments_path, experiment, dataset_name))
     pool.close()
     pool.join()
 
