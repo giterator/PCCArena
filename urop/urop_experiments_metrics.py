@@ -217,7 +217,7 @@ def collate_quality_charts_only_quantize():
             #
             # iterate through each experiment for the dataset_name, add to plot, use frame no. as index
             for experiment in experiments:
-                if "_Quantize=" in experiment['name']:
+                if "_Quantize=" in experiment['name'] and dataset_name in experiment['data']:
                     experiments_path = os.path.join(dir, dataset_name, "experiments")
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
@@ -261,7 +261,7 @@ def collate_quality_charts_without_quantize():
             #
             # iterate through each experiment for the dataset_name, add to plot, use frame no. as index
             for experiment in experiments:
-                if "_Quantize=" not in experiment['name']:
+                if "_Quantize=" not in experiment['name'] and dataset_name in experiment['data']:
                     experiments_path = os.path.join(dir, dataset_name, "experiments")
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
@@ -345,15 +345,18 @@ def collate_quality_rate():
             os.remove(os.path.join(dataset_charts_path, f))
 
         for experiment in experiments:
-            curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-            compressed_path = os.path.join(curr_experiment_path, "compressed")
-            bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
-            # Getting size in MB
-            bin_size = os.path.getsize(bin_path) / (1024.0 * 1024.0)
-            # Convert size to 3 decimal places
-            # bin_size = "{:.3f}".format(bin_size)
-            #
-            exp_size[dataset_name + "_" + experiment['name']] = bin_size
+            ##########################################################
+            if dataset_name in experiment['data']:
+                ##########################################################
+                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                compressed_path = os.path.join(curr_experiment_path, "compressed")
+                bin_path = os.path.join(compressed_path, experiment['name'] + ".bin")
+                # Getting size in MB
+                bin_size = os.path.getsize(bin_path) / (1024.0 * 1024.0)
+                # Convert size to 3 decimal places
+                # bin_size = "{:.3f}".format(bin_size)
+                #
+                exp_size[dataset_name + "_" + experiment['name']] = bin_size
     #
 
     # for combined experiments
@@ -401,7 +404,7 @@ def collate_quality_rate():
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
-                if 'OM=1' in experiment['name']:
+                if 'OM=1' in experiment['name'] and dataset_name in experiment['data']:
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
                     df = pd.read_csv(
@@ -436,7 +439,7 @@ def collate_quality_rate():
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
-                if 'OM=4' in experiment['name']:
+                if 'OM=4' in experiment['name'] and dataset_name in experiment['data']:
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
                     df = pd.read_csv(
@@ -445,7 +448,12 @@ def collate_quality_rate():
                     avg_metric = df[metric].mean()
                     bin_size = exp_size[dataset_name + "_" + experiment['name']]
                     # add point to scatter plot
-                    plt.scatter(bin_size, avg_metric, label=experiment['name'], marker=experiment['marker'],
+                    ##################################################
+                    label_name = experiment['name']
+                    if label_name == 'vanilla_OM=4':
+                        label_name = 'vanilla_r3'
+                    ##################################################
+                    plt.scatter(bin_size, avg_metric, label=label_name, marker=experiment['marker'],
                                 edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
                     texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
@@ -460,6 +468,11 @@ def collate_quality_rate():
 
 
 def single_vpcc_experiment(experiments_path, experiment, dataset_name):
+    #############################################################################
+    if dataset_name not in experiment['data']:
+        return
+    #############################################################################
+
     # if particualar experiment folder doesnt exist, create it within the experiment folder
     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
     if not Path(curr_experiment_path).is_dir():
@@ -533,38 +546,44 @@ if __name__ == '__main__':
     for dataset_name in datasets:
         experiments_path = os.path.join(dir, dataset_name, "experiments")
         for experiment in experiments:
-            curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-            ply_dir = os.path.join(curr_experiment_path, "decompressed")
-            view_dir = os.path.join(curr_experiment_path, "views")
-            if not Path(view_dir).is_dir():
-                os.mkdir(view_dir)
-            num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
-            num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
+            ##########################################################
+            if dataset_name in experiment['data']:
+                ##########################################################
+                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                ply_dir = os.path.join(curr_experiment_path, "decompressed")
+                view_dir = os.path.join(curr_experiment_path, "views")
+                if not Path(view_dir).is_dir():
+                    os.mkdir(view_dir)
+                num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
+                num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
 
-            if num_views != 6 * num_ref:
-                for f in os.listdir(view_dir):
-                    os.remove(os.path.join(view_dir, f))
-                ##
-                Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
-                    generate_png_from_ply)(os.path.join(ply_dir, ply), 3,
-                                           os.path.join(view_dir, os.path.splitext(ply)[0]))
-                                    for ply in os.listdir(ply_dir))
+                if num_views != 6 * num_ref:
+                    for f in os.listdir(view_dir):
+                        os.remove(os.path.join(view_dir, f))
+                    ##
+                    Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
+                        generate_png_from_ply)(os.path.join(ply_dir, ply), 3,
+                                               os.path.join(view_dir, os.path.splitext(ply)[0]))
+                                        for ply in os.listdir(ply_dir))
 
     # Compute metrics after VPCC is done for all experiments
     for dataset_name in datasets:
         experiments_path = os.path.join(dir, dataset_name, "experiments")
         for experiment in experiments:
-            curr_experiment_path = os.path.join(experiments_path, experiment['name'])
-            compute_metrics(curr_experiment_path, experiment,
-                            dataset_name)
+            ##########################################################
+            if dataset_name in experiment['data']:
+                ##########################################################
+                curr_experiment_path = os.path.join(experiments_path, experiment['name'])
+                compute_metrics(curr_experiment_path, experiment,
+                                dataset_name)
 
-            print("Metrics computed and summarized for: ", experiment['name'], " for dataset: ", dataset_name)
+                print("Metrics computed and summarized for: ", experiment['name'], " for dataset: ", dataset_name)
 
-            generate_indiv_charts(curr_experiment_path, experiment,
-                                  dataset_name)
+                generate_indiv_charts(curr_experiment_path, experiment,
+                                      dataset_name)
 
-            print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ",
-                  dataset_name)
+                print("Individual quality metric charts generated for : ", experiment['name'], " for dataset: ",
+                      dataset_name)
 
     # collate_quality_charts()
     collate_quality_charts_without_quantize()

@@ -74,7 +74,8 @@ experiments = [
 
      'marker': 'o',
      'facecolors': 'blue',
-     'edgecolors': 'blue'
+     'edgecolors': 'blue',
+     'data': datasets
      },
 
     # vanilla RC
@@ -84,7 +85,8 @@ experiments = [
 
      'marker': '*',
      'facecolors': 'blue',
-     'edgecolors': 'blue'
+     'edgecolors': 'blue',
+     'data': datasets
      },
     #########################################################################
     # vanilla RC
@@ -94,7 +96,8 @@ experiments = [
 
      'marker': 'p',
      'facecolors': 'blue',
-     'edgecolors': 'blue'
+     'edgecolors': 'blue',
+     'data': datasets
      },
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=26_AQP=35',
@@ -103,7 +106,8 @@ experiments = [
 
      'marker': 'P',
      'facecolors': 'blue',
-     'edgecolors': 'blue'
+     'edgecolors': 'blue',
+     'data': datasets
      },
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=27_AQP=34',
@@ -112,7 +116,8 @@ experiments = [
 
      'marker': 'X',
      'facecolors': 'blue',
-     'edgecolors': 'blue'
+     'edgecolors': 'blue',
+     'data': datasets
      },
     #####################################################################
     # 2DD
@@ -122,7 +127,8 @@ experiments = [
 
      'marker': 's',
      'facecolors': 'orange',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
 
     {'name': '2DD_lodX=2_lodY=1_OM=1',
@@ -131,7 +137,8 @@ experiments = [
 
      'marker': 's',
      'facecolors': 'orange',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
 
     {'name': '2DD_lodX=1_lodY=2_OM=4',
@@ -140,7 +147,8 @@ experiments = [
 
      'marker': 'D',
      'facecolors': 'orange',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
 
     {'name': '2DD_lodX=1_lodY=2_OM=1',
@@ -149,7 +157,8 @@ experiments = [
 
      'marker': 'D',
      'facecolors': 'orange',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
     #############################################################
     {'name': '2DD_lodX=2_lodY=2_OM=4',
@@ -158,7 +167,8 @@ experiments = [
 
      'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
 
     {'name': '2DD_lodX=2_lodY=2_OM=1',
@@ -167,7 +177,8 @@ experiments = [
 
      'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
-     'edgecolors': 'orange'
+     'edgecolors': 'orange',
+     'data': datasets
      },
     #############################################################
 
@@ -178,7 +189,8 @@ experiments = [
 
      'marker': '^',
      'facecolors': 'red',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      },
 
     {'name': '3DD_2_Quantize=2_OM=4',
@@ -188,7 +200,8 @@ experiments = [
 
      'marker': 'v',
      'facecolors': 'red',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      },
 
     {'name': '3DD_2_noQuantize_OM=1',
@@ -197,7 +210,8 @@ experiments = [
 
      'marker': '^',
      'facecolors': 'red',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      },
 
     {'name': '3DD_2_Quantize=2_OM=1',
@@ -207,7 +221,8 @@ experiments = [
 
      'marker': 'v',
      'facecolors': 'red',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      },
     ########################################################
     {'name': '3DD_4_noQuantize_OM=4',
@@ -216,7 +231,8 @@ experiments = [
 
      'marker': '^',
      'facecolors': 'none',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      },
     {'name': '3DD_4_noQuantize_OM=1',
      'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=4', '--threeDD'],
@@ -224,7 +240,8 @@ experiments = [
 
      'marker': '^',
      'facecolors': 'none',
-     'edgecolors': 'red'
+     'edgecolors': 'red',
+     'data': datasets
      }
     #########################################################
 ]
