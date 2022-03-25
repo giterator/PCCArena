@@ -439,7 +439,7 @@ def collate_quality_rate():
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
-                if 'OM=4' in experiment['name'] and dataset_name in experiment['data']:
+                if ('OM=4' in experiment['name'] and dataset_name in experiment['data']) or experiment['name'] == 'vanilla_r2':
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
                     df = pd.read_csv(
