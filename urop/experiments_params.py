@@ -73,8 +73,8 @@ experiments = [
      'decode': common_decode_cmd,
 
      'marker': 'o',
-     'facecolors': 'blue',
-     'edgecolors': 'blue',
+     'facecolors': 'black',
+     'edgecolors': 'black',
      'data': datasets
      },
 
@@ -84,8 +84,19 @@ experiments = [
      'decode': common_decode_cmd,
 
      'marker': 's',
-     'facecolors': 'blue',
-     'edgecolors': 'blue',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    # vanilla r1
+    {'name': 'vanilla_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'black',
+     'edgecolors': 'black',
      'data': datasets
      },
 
@@ -159,6 +170,17 @@ experiments = [
      'decode': common_decode_cmd,
 
      'marker': 'v',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': 'o',
      'facecolors': 'blue',
      'edgecolors': 'blue',
      'data': ['redandblack']

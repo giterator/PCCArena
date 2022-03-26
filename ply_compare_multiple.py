@@ -10,6 +10,7 @@ import fnmatch
 import multiprocessing
 from joblib import Parallel, delayed
 from urop.view_dependent_metrics import *
+from pathlib import Path
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -129,10 +130,20 @@ if __name__ == '__main__':
 
     print("Completed individual evaluation for frames")
 
-    # del all csv files
-    existing_metric_files = glob.glob(args.evl_log + "/*.csv")
-    for f in existing_metric_files:
-        os.remove(f)
-    # summarize the log files into 1
-    summarize_one_setup(args.evl_log, color=True)
+
+############################################################################
+    alg_name = Path(args.evl_log).parents[2].stem
+    ds_name = Path(args.evl_log).parents[1].stem
+    rate = Path(args.evl_log).parents[0].stem
+    summary_csv = (
+        Path(args.evl_log).joinpath(f'{alg_name}_{ds_name}_{rate}_summary.csv')
+    )
+
+    if not summary_csv.is_file():
+        # del all csv files
+        existing_metric_files = glob.glob(args.evl_log + "/*.csv")
+        for f in existing_metric_files:
+            os.remove(f)
+        # summarize the log files into 1
+        summarize_one_setup(args.evl_log, color=True)
     print("Completed summary of evaluation")
