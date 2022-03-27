@@ -420,7 +420,8 @@ def collate_quality_rate():
                         np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
-            plt.legend()
+            ################plt.legend()
+            plt.legend(bbox_to_anchor=(20.05, 5.0), loc='upper left')
             adjust_text(texts)
             # save plot
             plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=1.png",
@@ -460,7 +461,8 @@ def collate_quality_rate():
                         np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
             plt.grid()
-            plt.legend()
+            ################plt.legend()
+            plt.legend(bbox_to_anchor=(20.05, 5.0), loc='upper left')
             adjust_text(texts)
             # save plot
             plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=4.png",
