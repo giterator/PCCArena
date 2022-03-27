@@ -84,7 +84,8 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
     ply_count_raw = len(fnmatch.filter(os.listdir(uncompressed_path), '*.ply'))
 
     # append uncompressed, reconstructed, compressed path to encode command => execute
-    if ply_count_raw != ply_count_reconstructed:
+    bin_name = os.path.join(compressed_path, experiment_name + '.bin')
+    if not Path(bin_name).is_file(): #ply_count_raw != ply_count_reconstructed:
         # del contents of reconstructed & compressed
         for f in os.listdir(compressed_path):
             os.remove(os.path.join(compressed_path, f))
