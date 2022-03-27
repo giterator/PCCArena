@@ -398,6 +398,9 @@ def collate_quality_rate():
             dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
             # clear plot
             plt.clf()
+            #
+            plt.figure(figsize=(20, 5))
+            #
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
             plt.xlabel("Rate (MB)")
             plt.ylabel(metric_name)
@@ -420,9 +423,11 @@ def collate_quality_rate():
                     texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
                         np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
+            #
+            plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+            #
             plt.grid()
-            ################plt.legend()
-            plt.legend(bbox_to_anchor=(20.05, 5.0), loc='upper left')
+
             adjust_text(texts)
             # save plot
             plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=1.png",
@@ -434,6 +439,9 @@ def collate_quality_rate():
             dataset_charts_path = os.path.join(charts_path, dataset_name + '/')
             # clear plot
             plt.clf()
+            #
+            plt.figure(figsize=(20, 5))
+            #
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
             plt.xlabel("Rate (MB)")
             plt.ylabel(metric_name)
@@ -461,9 +469,11 @@ def collate_quality_rate():
                     texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
                         np.format_float_positional(avg_metric, precision=3)) + ")", (bin_size, avg_metric)))
 
+            #
+            plt.legend(bbox_to_anchor=(1.04, 1), loc="upper left")
+            #
             plt.grid()
-            ################plt.legend()
-            plt.legend(bbox_to_anchor=(20.05, 5.0), loc='upper left')
+
             adjust_text(texts)
             # save plot
             plt.savefig(dataset_charts_path + dataset_name + "_" + metric_name + "_VS_rate_OM=4.png",
@@ -574,7 +584,9 @@ if __name__ == '__main__':
                 num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
                 num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
 
-                if num_views != 6 * num_ref:
+                summary_metrics_path = os.path.join(curr_experiment_path, 'metrics', dataset_name + "_" + "experiments" + "_" + experiment['name'] + "_summary.csv")
+
+                if not Path(summary_metrics_path).is_file(): #num_views != 6 * num_ref:
                     for f in os.listdir(view_dir):
                         os.remove(os.path.join(view_dir, f))
                     ##
