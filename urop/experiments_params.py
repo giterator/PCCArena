@@ -154,15 +154,15 @@ experiments = [
      },
 
     # vanilla RC
-    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=33',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=33'],
-     'decode': common_decode_cmd,
-
-     'marker': 'D',
-     'facecolors': 'blue',
-     'edgecolors': 'blue',
-     'data': ['longdress']
-     },
+    # {'name': 'vanilla_rc_OM=4_GQP=27_AQP=33',
+    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=33'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 'D',
+    #  'facecolors': 'blue',
+    #  'edgecolors': 'blue',
+    #  'data': ['longdress']
+    #  },
 
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=25_AQP=33',
