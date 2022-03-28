@@ -62,7 +62,7 @@ common_decode_cmd = ['./bin/PccAppDecoder',
                      '--colorTransform=0',
                      '--computeMetrics=0',
                      '--computeChecksum=0',
-                     '--keepIntermediateFiles',
+                     # '--keepIntermediateFiles',
                      ]
 
 # array of dicts where each dict has 3 keys: folder name, encoder command, decoder command
