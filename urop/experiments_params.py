@@ -100,6 +100,30 @@ experiments = [
      'data': datasets
      },
 
+    ###########
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47'],
+     'decode': common_decode_cmd,
+
+     'marker': '*',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=40_AQP=52',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52'],
+     'decode': common_decode_cmd,
+
+     'marker': 'p',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+    ######################
+
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=27_AQP=35',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=35'],
@@ -239,6 +263,39 @@ experiments = [
      'facecolors': 'blue',
      'edgecolors': 'blue',
      'data': ['redandblack']
+     },
+    ########################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=38',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=38'],
+     'decode': common_decode_cmd,
+
+     'marker': 'P',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['longdress']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=30_AQP=41',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=41'],
+     'decode': common_decode_cmd,
+
+     'marker': 'p',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['loot']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=39',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=39'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['soldier']
      },
     #####################################################################
     # 2DD
