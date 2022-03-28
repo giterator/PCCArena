@@ -11,6 +11,7 @@ FOR ALL VPCC executables do `chmod +x name.sh` i.e. chmod +x PccAppEncoder , chm
 From ~ dir: python3 PCCArena/urop/urop_experiments_metrics.py
                     OR
                     nohup python3 PCCArena/urop/urop_experiments_metrics.py &
+                    nohup python3 PCCArena/urop/gen_quality_rate_charts.py &
 
 
 To view no. of threads in use by a pid: ps -o nlwp <pid>

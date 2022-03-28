@@ -440,7 +440,7 @@ def collate_quality_rate():
             # clear plot
             plt.clf()
             #
-            plt.figure(figsize=(20, 5))
+            plt.figure(figsize=(20, 7))
             #
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
             plt.xlabel("Rate (MB)")
@@ -461,7 +461,11 @@ def collate_quality_rate():
                     ##################################################
                     label_name = experiment['name']
                     if label_name == 'vanilla_OM=4':
-                        label_name = 'vanilla_r3'
+                        label_name = 'vanilla_r3_GQP=24_AQP=32'
+                    elif label_name == 'vanilla_r2':
+                        label_name = 'vanilla_r2_GQP=28_AQP=37'
+                    elif label_name == 'vanilla_r1':
+                        label_name = 'vanilla_r1_GQP=32_AQP=42'
                     ##################################################
                     plt.scatter(bin_size, avg_metric, label=label_name, marker=experiment['marker'],
                                 edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
