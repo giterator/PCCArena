@@ -591,6 +591,7 @@ if __name__ == '__main__':
                 summary_metrics_path = os.path.join(curr_experiment_path, 'metrics', dataset_name + "_" + "experiments" + "_" + experiment['name'] + "_summary.csv")
 
                 if not Path(summary_metrics_path).is_file(): #num_views != 6 * num_ref:
+                    print("gnerating view pngs for: ", dataset_name, experiment['name'], flush=True)
                     for f in os.listdir(view_dir):
                         os.remove(os.path.join(view_dir, f))
                     ##
