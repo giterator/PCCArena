@@ -434,4 +434,72 @@ experiments = [
      'data': datasets
      }
     #########################################################
+    # R1 2DD
+    {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'cyan',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'cyan',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    # R1 3DD
+    {'name': '3DD_2_noQuantize_OM=4_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '3DD_2_Quantize=2_OM=4_r1',
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2',
+                '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '3DD_4_noQuantize_OM=4_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD', '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+    #########################################################
 ]

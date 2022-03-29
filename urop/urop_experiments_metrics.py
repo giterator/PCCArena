@@ -470,7 +470,7 @@ def collate_quality_rate():
                     elif label_name == '2DD_lodX=2_lodY=1_OM=4' or label_name == '2DD_lodX=1_lodY=2_OM=4' \
                             or label_name == '2DD_lodX=2_lodY=2_OM=4' or label_name == '3DD_2_noQuantize_OM=4' \
                             or label_name == '3DD_2_Quantize=2_OM=4' or label_name == '3DD_4_noQuantize_OM=4':
-                        label_name = label_name + '_R3'
+                        label_name = label_name + '_r3'
                     ##################################################
                     plt.scatter(bin_size, avg_metric, label=label_name, marker=experiment['marker'],
                                 edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
