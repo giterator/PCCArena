@@ -432,7 +432,7 @@ experiments = [
      'facecolors': 'none',
      'edgecolors': 'red',
      'data': datasets
-     }
+     },
     #########################################################
     # R1 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
