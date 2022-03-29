@@ -298,6 +298,7 @@ experiments = [
      'data': ['soldier']
      },
     #####################################################################
+    # R3
     # 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
@@ -309,6 +310,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '2DD_lodX=2_lodY=1_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1'],
      'decode': common_decode_cmd,
@@ -319,6 +321,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '2DD_lodX=1_lodY=2_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
      'decode': common_decode_cmd,
@@ -329,6 +332,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '2DD_lodX=1_lodY=2_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=1'],
      'decode': common_decode_cmd,
@@ -339,6 +343,7 @@ experiments = [
      'data': datasets
      },
     #############################################################
+    # R3
     {'name': '2DD_lodX=2_lodY=2_OM=4',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
      'decode': common_decode_cmd,
@@ -349,6 +354,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '2DD_lodX=2_lodY=2_OM=1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=1'],
      'decode': common_decode_cmd,
@@ -361,6 +367,7 @@ experiments = [
     #############################################################
 
     # 3DD
+    # R3
     {'name': '3DD_2_noQuantize_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
      'decode': common_decode_cmd,
@@ -371,6 +378,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '3DD_2_Quantize=2_OM=4',
      'encode': common_encode_cmd +
                ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
@@ -382,6 +390,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '3DD_2_noQuantize_OM=1',
      'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD'],
      'decode': common_decode_cmd,
@@ -392,6 +401,7 @@ experiments = [
      'data': datasets
      },
 
+    # R3
     {'name': '3DD_2_Quantize=2_OM=1',
      'encode': common_encode_cmd +
                ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
@@ -403,6 +413,7 @@ experiments = [
      'data': datasets
      },
     ########################################################
+    # R3
     {'name': '3DD_4_noQuantize_OM=4',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD'],
      'decode': common_decode_cmd,
@@ -412,6 +423,7 @@ experiments = [
      'edgecolors': 'red',
      'data': datasets
      },
+    # R3
     {'name': '3DD_4_noQuantize_OM=1',
      'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=4', '--threeDD'],
      'decode': common_decode_cmd,

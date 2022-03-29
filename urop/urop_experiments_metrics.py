@@ -80,12 +80,12 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
     if not Path(reconstructed_path).is_dir():
         os.mkdir(reconstructed_path)
 
-    ply_count_reconstructed = len(fnmatch.filter(os.listdir(reconstructed_path), '*.ply'))
-    ply_count_raw = len(fnmatch.filter(os.listdir(uncompressed_path), '*.ply'))
+    # ply_count_reconstructed = len(fnmatch.filter(os.listdir(reconstructed_path), '*.ply'))
+    # ply_count_raw = len(fnmatch.filter(os.listdir(uncompressed_path), '*.ply'))
 
     # append uncompressed, reconstructed, compressed path to encode command => execute
     bin_name = os.path.join(compressed_path, experiment_name + '.bin')
-    if not Path(bin_name).is_file(): #ply_count_raw != ply_count_reconstructed:
+    if not Path(bin_name).is_file():  # ply_count_raw != ply_count_reconstructed:
         # del contents of reconstructed & compressed
         for f in os.listdir(compressed_path):
             os.remove(os.path.join(compressed_path, f))
@@ -449,7 +449,8 @@ def collate_quality_rate():
             #
             experiments_path = os.path.join(dir, dataset_name, "experiments")
             for experiment in experiments:
-                if ('OM=4' in experiment['name'] and dataset_name in experiment['data']) or experiment['name'] == 'vanilla_r2' or experiment['name'] == 'vanilla_r1':
+                if ('OM=4' in experiment['name'] and dataset_name in experiment['data']) or experiment[
+                    'name'] == 'vanilla_r2' or experiment['name'] == 'vanilla_r1':
                     curr_experiment_path = os.path.join(experiments_path, experiment['name'])
                     metrics_path = os.path.join(curr_experiment_path, "metrics/")
                     df = pd.read_csv(
@@ -466,6 +467,10 @@ def collate_quality_rate():
                         label_name = 'vanilla_r2_GQP=28_AQP=37'
                     elif label_name == 'vanilla_r1':
                         label_name = 'vanilla_r1_GQP=32_AQP=42'
+                    elif label_name == '2DD_lodX=2_lodY=1_OM=4' or label_name == '2DD_lodX=1_lodY=2_OM=4' \
+                            or label_name == '2DD_lodX=2_lodY=2_OM=4' or label_name == '3DD_2_noQuantize_OM=4' \
+                            or label_name == '3DD_2_Quantize=2_OM=4' or label_name == '3DD_4_noQuantize_OM=4':
+                        label_name = label_name + '_R3'
                     ##################################################
                     plt.scatter(bin_size, avg_metric, label=label_name, marker=experiment['marker'],
                                 edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
@@ -585,12 +590,14 @@ if __name__ == '__main__':
                 view_dir = os.path.join(curr_experiment_path, "views")
                 if not Path(view_dir).is_dir():
                     os.mkdir(view_dir)
-                num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
-                num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
+                # num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
+                # num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
 
-                summary_metrics_path = os.path.join(curr_experiment_path, 'metrics', dataset_name + "_" + "experiments" + "_" + experiment['name'] + "_summary.csv")
+                summary_metrics_path = os.path.join(curr_experiment_path, 'metrics',
+                                                    dataset_name + "_" + "experiments" + "_" + experiment[
+                                                        'name'] + "_summary.csv")
 
-                if not Path(summary_metrics_path).is_file(): #num_views != 6 * num_ref:
+                if not Path(summary_metrics_path).is_file():  # num_views != 6 * num_ref:
                     print("gnerating view pngs for: ", dataset_name, experiment['name'], flush=True)
                     for f in os.listdir(view_dir):
                         os.remove(os.path.join(view_dir, f))
