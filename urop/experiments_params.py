@@ -497,7 +497,7 @@ experiments = [
      'decode': common_decode_cmd,
 
      'marker': '^',
-     'facecolors': 'magenta',
+     'facecolors': 'none',
      'edgecolors': 'magenta',
      'data': datasets
      },
