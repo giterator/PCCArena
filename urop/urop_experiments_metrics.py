@@ -440,7 +440,7 @@ def collate_quality_rate():
             # clear plot
             plt.clf()
             #
-            plt.figure(figsize=(20, 7))
+            plt.figure(figsize=(20, 9))
             #
             plt.title(dataset_name + "_" + metric_name + "_VS_rate")
             plt.xlabel("Rate (MB)")
