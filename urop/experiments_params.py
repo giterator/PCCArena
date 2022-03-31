@@ -507,7 +507,7 @@ experiments = [
     # R1 2DD WITH INTERPOLATE
     {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=1', '--minimumImageHeight=1'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 's',
@@ -518,7 +518,7 @@ experiments = [
 
     {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=1', '--minimumImageHeight=1'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 'D',
@@ -529,7 +529,7 @@ experiments = [
 
     {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=1', '--minimumImageHeight=1'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': mpath.Path.unit_regular_star(8),
@@ -541,7 +541,7 @@ experiments = [
 
     # R3  2DD WITH INTERPOLATE
     # {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
     #  'decode': common_decode_cmd + ['--int2DD'],
     #
     #  'marker': 's',
@@ -551,7 +551,7 @@ experiments = [
     #  },
     #
     # {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
     #  'decode': common_decode_cmd + ['--int2DD'],
     #
     #  'marker': 'D',
@@ -561,7 +561,7 @@ experiments = [
     #  },
     #
     # {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
     #  'decode': common_decode_cmd + ['--int2DD'],
     #
     #  'marker': mpath.Path.unit_regular_star(8),
