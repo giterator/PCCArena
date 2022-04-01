@@ -137,7 +137,7 @@ def execute_decode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
         command = scope_experiment['decode'] + [start_frame_param, decompressed_param, compressed_param]
 
         print("COMMAND: ", command, flish=True)
-        
+
         sp.run(command, cwd=VPCC_dir)
 
 
@@ -560,6 +560,7 @@ if __name__ == '__main__':
         #     single_vpcc_experiment)(experiments_path, experiment, dataset_name)
         #     for experiment in experiments)
         for experiment in experiments:
+            print("applying async to: ", experiment['name'], flush=True)
             pool.apply_async(single_vpcc_experiment, (experiments_path, experiment, dataset_name))
     pool.close()
     pool.join()
