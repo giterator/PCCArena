@@ -111,7 +111,7 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
         command = scope_experiment['encode'] + [start_frame_param, reconstructed_param, compressed_param,
                                                 uncompressed_param]
 
-        print("COMMAND: ", command, flish=True)
+        print("COMMAND: ", command, flush=True)
 
         sp.run(command, cwd=VPCC_dir)
         ##################
