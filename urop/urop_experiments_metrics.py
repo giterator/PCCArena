@@ -96,6 +96,7 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
 
         for f in os.listdir(reconstructed_path):
             os.remove(os.path.join(reconstructed_path, f))
+        print("removed files in compressed and reconstructed folers", flush=True)
 
         uncompressed_param = "--uncompressedDataPath=" + os.path.join(uncompressed_path,
                                                                       scope_dataset_name + "_vox10_%04d.ply")
@@ -104,6 +105,8 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
                                                                         scope_dataset_name + "_rec_%04d.ply")
 
         start_frame_param = '--startFrameNumber=' + start_frame_no[scope_dataset_name]
+
+        print("defined uncompressed, compressed, startframe params", flush=True)
 
         command = scope_experiment['encode'] + [start_frame_param, reconstructed_param, compressed_param,
                                                 uncompressed_param]
