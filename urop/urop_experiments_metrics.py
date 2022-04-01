@@ -142,7 +142,7 @@ def execute_decode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
 
         command = scope_experiment['decode'] + [start_frame_param, decompressed_param, compressed_param]
 
-        print("COMMAND: ", command, flish=True)
+        print("COMMAND: ", command, flush=True)
 
         sp.run(command, cwd=VPCC_dir)
 
