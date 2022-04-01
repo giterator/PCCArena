@@ -85,6 +85,8 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
 
     # append uncompressed, reconstructed, compressed path to encode command => execute
     bin_name = os.path.join(compressed_path, experiment_name + '.bin')
+
+    print("Checking bin", flush=True)
     if not Path(bin_name).is_file():  # ply_count_raw != ply_count_reconstructed:
         # del contents of reconstructed & compressed
         ##################
