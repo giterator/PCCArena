@@ -85,27 +85,27 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
 
     # append uncompressed, reconstructed, compressed path to encode command => execute
     bin_name = os.path.join(compressed_path, experiment_name + '.bin')
-    #if not Path(bin_name).is_file():  # ply_count_raw != ply_count_reconstructed:
+    if not Path(bin_name).is_file():  # ply_count_raw != ply_count_reconstructed:
         # del contents of reconstructed & compressed
-    ##################
-    for f in os.listdir(compressed_path):
-        os.remove(os.path.join(compressed_path, f))
+        ##################
+        for f in os.listdir(compressed_path):
+            os.remove(os.path.join(compressed_path, f))
 
-    for f in os.listdir(reconstructed_path):
-        os.remove(os.path.join(reconstructed_path, f))
+        for f in os.listdir(reconstructed_path):
+            os.remove(os.path.join(reconstructed_path, f))
 
-    uncompressed_param = "--uncompressedDataPath=" + os.path.join(uncompressed_path,
-                                                                  scope_dataset_name + "_vox10_%04d.ply")
-    compressed_param = "--compressedStreamPath=" + os.path.join(compressed_path, experiment_name + ".bin")
-    reconstructed_param = "--reconstructedDataPath=" + os.path.join(reconstructed_path,
-                                                                    scope_dataset_name + "_rec_%04d.ply")
+        uncompressed_param = "--uncompressedDataPath=" + os.path.join(uncompressed_path,
+                                                                      scope_dataset_name + "_vox10_%04d.ply")
+        compressed_param = "--compressedStreamPath=" + os.path.join(compressed_path, experiment_name + ".bin")
+        reconstructed_param = "--reconstructedDataPath=" + os.path.join(reconstructed_path,
+                                                                        scope_dataset_name + "_rec_%04d.ply")
 
-    start_frame_param = '--startFrameNumber=' + start_frame_no[scope_dataset_name]
+        start_frame_param = '--startFrameNumber=' + start_frame_no[scope_dataset_name]
 
-    command = scope_experiment['encode'] + [start_frame_param, reconstructed_param, compressed_param,
-                                            uncompressed_param]
-    sp.run(command, cwd=VPCC_dir)
-    ##################
+        command = scope_experiment['encode'] + [start_frame_param, reconstructed_param, compressed_param,
+                                                uncompressed_param]
+        sp.run(command, cwd=VPCC_dir)
+        ##################
 
 
 def execute_decode(scope_curr_experiment_path, scope_experiment, scope_dataset_name):
