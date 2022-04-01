@@ -493,8 +493,8 @@ def collate_quality_rate():
 
 def single_vpcc_experiment(experiments_path, experiment, dataset_name):
     #############################################################################
-    if dataset_name not in experiment['data']:
-        return
+    # if dataset_name not in experiment['data']:
+    #     return
     #############################################################################
 
     # if particualar experiment folder doesnt exist, create it within the experiment folder
