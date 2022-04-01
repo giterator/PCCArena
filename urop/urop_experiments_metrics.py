@@ -508,11 +508,13 @@ def single_vpcc_experiment(experiments_path, experiment, dataset_name):
     if not Path(curr_experiment_path).is_dir():
         os.mkdir(curr_experiment_path)
 
+    print("About to encode: ", experiment['name'], " for dataset: ", dataset_name)
     execute_encode(curr_experiment_path, experiment,
                    dataset_name)
 
     print("Encoding done for: ", experiment['name'], " for dataset: ", dataset_name)
 
+    print("About to decode: ", experiment['name'], " for dataset: ", dataset_name)
     execute_decode(curr_experiment_path, experiment,
                    dataset_name)
 
