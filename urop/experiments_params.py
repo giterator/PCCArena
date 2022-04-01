@@ -67,441 +67,441 @@ common_decode_cmd = ['./bin/PccAppDecoder',
 
 # array of dicts where each dict has 3 keys: folder name, encoder command, decoder command
 experiments = [
-    # # vanilla r3
-    # {'name': 'vanilla_OM=4',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'o',
-    #  'facecolors': 'black',
-    #  'edgecolors': 'black',
-    #  'data': datasets
-    #  },
-    #
-    # # vanilla r2
-    # {'name': 'vanilla_r2',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r2.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'black',
-    #  'edgecolors': 'black',
-    #  'data': datasets
-    #  },
-    #
-    # # vanilla r1
-    # {'name': 'vanilla_r1',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'black',
-    #  'edgecolors': 'black',
-    #  'data': datasets
-    #  },
-    #
-    # ###########
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '*',
-    #  'facecolors': 'black',
-    #  'edgecolors': 'black',
-    #  'data': datasets
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=40_AQP=52',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'p',
-    #  'facecolors': 'black',
-    #  'edgecolors': 'black',
-    #  'data': datasets
-    #  },
-    # ######################
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=27_AQP=35',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=35'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '*',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': datasets
-    #  },
-    # #########################################################################
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=26_AQP=34',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=34'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'p',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': datasets
-    #  },
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=26_AQP=35',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=35'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'P',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': datasets
-    #  },
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=27_AQP=34',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=34'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'X',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': datasets
-    #  },
-    # #####################################################################
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=28_AQP=33',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=28', '--attributeQP=33'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '>',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['longdress']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=27_AQP=33',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=33'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['longdress']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=25_AQP=33',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=25', '--attributeQP=33'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '<',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['loot', 'soldier']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=26_AQP=32',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=32'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'v',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['redandblack']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=26_AQP=33',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=33'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'o',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['redandblack']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=30_AQP=38',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=38'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['longdress', 'soldier']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=29_AQP=39',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=29', '--attributeQP=39'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['loot']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=25_AQP=34',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=25', '--attributeQP=34'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['loot']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=32_AQP=40',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=40'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': mpath.Path.unit_regular_star(8),
-    #  'facecolors': 'blue',
-    #  'edgecolors': 'blue',
-    #  'data': ['redandblack']
-    #  },
-    # ########################################################################
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=32_AQP=38',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=38'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'P',
-    #  'facecolors': 'green',
-    #  'edgecolors': 'green',
-    #  'data': ['longdress']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=30_AQP=41',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=41'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'p',
-    #  'facecolors': 'green',
-    #  'edgecolors': 'green',
-    #  'data': ['loot']
-    #  },
-    #
-    # # vanilla RC
-    # {'name': 'vanilla_rc_OM=4_GQP=32_AQP=39',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=39'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'green',
-    #  'edgecolors': 'green',
-    #  'data': ['soldier']
-    #  },
-    # #####################################################################
-    # # R3
-    # # 2DD
-    # {'name': '2DD_lodX=2_lodY=1_OM=4',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'orange',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '2DD_lodX=2_lodY=1_OM=1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'orange',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '2DD_lodX=1_lodY=2_OM=4',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'orange',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '2DD_lodX=1_lodY=2_OM=1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=1'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'orange',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    # #############################################################
-    # # R3
-    # {'name': '2DD_lodX=2_lodY=2_OM=4',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': mpath.Path.unit_regular_star(8),
-    #  'facecolors': 'none',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '2DD_lodX=2_lodY=2_OM=1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=1'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': mpath.Path.unit_regular_star(8),
-    #  'facecolors': 'none',
-    #  'edgecolors': 'orange',
-    #  'data': datasets
-    #  },
-    # #############################################################
-    #
-    # # 3DD
-    # # R3
-    # {'name': '3DD_2_noQuantize_OM=4',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'red',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '3DD_2_Quantize=2_OM=4',
-    #  'encode': common_encode_cmd +
-    #            ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
-    #  'decode': common_decode_cmd + ['--upscalePC=2'],
-    #
-    #  'marker': 'v',
-    #  'facecolors': 'red',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '3DD_2_noQuantize_OM=1',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'red',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    #
-    # # R3
-    # {'name': '3DD_2_Quantize=2_OM=1',
-    #  'encode': common_encode_cmd +
-    #            ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
-    #  'decode': common_decode_cmd + ['--upscalePC=2'],
-    #
-    #  'marker': 'v',
-    #  'facecolors': 'red',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    # ########################################################
-    # # R3
-    # {'name': '3DD_4_noQuantize_OM=4',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'none',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    # # R3
-    # {'name': '3DD_4_noQuantize_OM=1',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=4', '--threeDD'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'none',
-    #  'edgecolors': 'red',
-    #  'data': datasets
-    #  },
-    # ########################################################
-    # # R1 2DD
-    # {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-    #                                 '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 's',
-    #  'facecolors': 'cyan',
-    #  'edgecolors': 'cyan',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-    #                                 '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'cyan',
-    #  'edgecolors': 'cyan',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-    #                                 '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': mpath.Path.unit_regular_star(8),
-    #  'facecolors': 'none',
-    #  'edgecolors': 'cyan',
-    #  'data': datasets
-    #  },
-    #
-    # # R1 3DD
-    # {'name': '3DD_2_noQuantize_OM=4_r1',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD',
-    #                                 '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'magenta',
-    #  'edgecolors': 'magenta',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '3DD_2_Quantize=2_OM=4_r1',
-    #  'encode': common_encode_cmd +
-    #            ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2',
-    #             '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd + ['--upscalePC=2'],
-    #
-    #  'marker': 'v',
-    #  'facecolors': 'magenta',
-    #  'edgecolors': 'magenta',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '3DD_4_noQuantize_OM=4_r1',
-    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD',
-    #                                 '--config=cfg/rate/ctc-r1.cfg'],
-    #  'decode': common_decode_cmd,
-    #
-    #  'marker': '^',
-    #  'facecolors': 'none',
-    #  'edgecolors': 'magenta',
-    #  'data': datasets
-    #  },
+    # vanilla r3
+    {'name': 'vanilla_OM=4',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4'],
+     'decode': common_decode_cmd,
+
+     'marker': 'o',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    # vanilla r2
+    {'name': 'vanilla_r2',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r2.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    # vanilla r1
+    {'name': 'vanilla_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    ###########
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47'],
+     'decode': common_decode_cmd,
+
+     'marker': '*',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=40_AQP=52',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52'],
+     'decode': common_decode_cmd,
+
+     'marker': 'p',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets
+     },
+    ######################
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=35',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=35'],
+     'decode': common_decode_cmd,
+
+     'marker': '*',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': datasets
+     },
+    #########################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=34',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=34'],
+     'decode': common_decode_cmd,
+
+     'marker': 'p',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': datasets
+     },
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=35',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=35'],
+     'decode': common_decode_cmd,
+
+     'marker': 'P',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': datasets
+     },
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=34',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=34'],
+     'decode': common_decode_cmd,
+
+     'marker': 'X',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': datasets
+     },
+    #####################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=28_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=28', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': '>',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['longdress']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=27_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=27', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['longdress']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=25_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=25', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': '<',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['loot', 'soldier']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=32',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=32'],
+     'decode': common_decode_cmd,
+
+     'marker': 'v',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=26_AQP=33',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=26', '--attributeQP=33'],
+     'decode': common_decode_cmd,
+
+     'marker': 'o',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=30_AQP=38',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=38'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['longdress', 'soldier']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=29_AQP=39',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=29', '--attributeQP=39'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['loot']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=25_AQP=34',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=25', '--attributeQP=34'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['loot']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=40',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=40'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'blue',
+     'edgecolors': 'blue',
+     'data': ['redandblack']
+     },
+    ########################################################################
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=38',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=38'],
+     'decode': common_decode_cmd,
+
+     'marker': 'P',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['longdress']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=30_AQP=41',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=30', '--attributeQP=41'],
+     'decode': common_decode_cmd,
+
+     'marker': 'p',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['loot']
+     },
+
+    # vanilla RC
+    {'name': 'vanilla_rc_OM=4_GQP=32_AQP=39',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=32', '--attributeQP=39'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': ['soldier']
+     },
+    #####################################################################
+    # R3
+    # 2DD
+    {'name': '2DD_lodX=2_lodY=1_OM=4',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '2DD_lodX=2_lodY=1_OM=1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=1'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '2DD_lodX=1_lodY=2_OM=4',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '2DD_lodX=1_lodY=2_OM=1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=1'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+    #############################################################
+    # R3
+    {'name': '2DD_lodX=2_lodY=2_OM=4',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '2DD_lodX=2_lodY=2_OM=1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=1'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'orange',
+     'data': datasets
+     },
+    #############################################################
+
+    # 3DD
+    # R3
+    {'name': '3DD_2_noQuantize_OM=4',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '3DD_2_Quantize=2_OM=4',
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '3DD_2_noQuantize_OM=1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+
+    # R3
+    {'name': '3DD_2_Quantize=2_OM=1',
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2'],
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+    ########################################################
+    # R3
+    {'name': '3DD_4_noQuantize_OM=4',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'none',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+    # R3
+    {'name': '3DD_4_noQuantize_OM=1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=1', '--threeDDPointsPerVoxel=4', '--threeDD'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'none',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+    ########################################################
+    # R1 2DD
+    {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'cyan',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'cyan',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'cyan',
+     'data': datasets
+     },
+
+    # R1 3DD
+    {'name': '3DD_2_noQuantize_OM=4_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '3DD_2_Quantize=2_OM=4_r1',
+     'encode': common_encode_cmd +
+               ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2',
+                '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd + ['--upscalePC=2'],
+
+     'marker': 'v',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '3DD_4_noQuantize_OM=4_r1',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD',
+                                    '--config=cfg/rate/ctc-r1.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': '^',
+     'facecolors': 'none',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
     #########################################################
 
     # R1 2DD WITH INTERPOLATE
@@ -538,35 +538,104 @@ experiments = [
      'data': datasets
      },
     ##########
+    # R2 2DD WITH INTERPOLATE
+    {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'], #, '--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': 's',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'], # '--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': 'D',
+     'facecolors': 'magenta',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+
+    {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'], # '--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'magenta',
+     'data': datasets
+     },
+    ##########
 
     # R3  2DD WITH INTERPOLATE
-    # {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
-    #  'decode': common_decode_cmd + ['--int2DD'],
-    #
-    #  'marker': 's',
-    #  'facecolors': 'green',
-    #  'edgecolors': 'green',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
-    #  'decode': common_decode_cmd + ['--int2DD'],
-    #
-    #  'marker': 'D',
-    #  'facecolors': 'green',
-    #  'edgecolors': 'green',
-    #  'data': datasets
-    #  },
-    #
-    # {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r3',
-    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4', '--minimumImageWidth=1', '--minimumImageHeight=1'],
-    #  'decode': common_decode_cmd + ['--int2DD'],
-    #
-    #  'marker': mpath.Path.unit_regular_star(8),
-    #  'facecolors': 'none',
-    #  'edgecolors': 'green',
-    #  'data': datasets
-    #  },
+    {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r3',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4'], #'--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': 's',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': datasets
+     },
+
+    {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r3',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4'], #'--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': 'D',
+     'facecolors': 'green',
+     'edgecolors': 'green',
+     'data': datasets
+     },
+
+    {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r3',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4'], #'--minimumImageWidth=1', '--minimumImageHeight=1'],
+     'decode': common_decode_cmd + ['--int2DD'],
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'green',
+     'data': datasets
+     },
+
+
+    # R2 2DD
+    {'name': '2DD_lodX=2_lodY=1_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 's',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=1_lodY=2_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': 'D',
+     'facecolors': 'red',
+     'edgecolors': 'red',
+     'data': datasets
+     },
+
+    {'name': '2DD_lodX=2_lodY=2_OM=4_r2',
+     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
+                                    '--config=cfg/rate/ctc-r2.cfg'],
+     'decode': common_decode_cmd,
+
+     'marker': mpath.Path.unit_regular_star(8),
+     'facecolors': 'none',
+     'edgecolors': 'red',
+     'data': datasets
+     },
 ]
