@@ -88,6 +88,7 @@ def execute_encode(scope_curr_experiment_path, scope_experiment, scope_dataset_n
 
     print("Checking bin", flush=True)
     if not Path(bin_name).is_file():  # ply_count_raw != ply_count_reconstructed:
+        print("bin doesnt exist", flush=True)
         # del contents of reconstructed & compressed
         ##################
         for f in os.listdir(compressed_path):
