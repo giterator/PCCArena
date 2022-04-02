@@ -585,7 +585,7 @@ if __name__ == '__main__':
         num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
         num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
 
-        if num_views != 6 * num_ref:
+        if num_views != 1 * num_ref: #num_views != 6 * num_ref
             for f in os.listdir(view_dir):
                 os.remove(os.path.join(view_dir, f))
             ##
@@ -607,14 +607,14 @@ if __name__ == '__main__':
                 view_dir = os.path.join(curr_experiment_path, "views")
                 if not Path(view_dir).is_dir():
                     os.mkdir(view_dir)
-                # num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
-                # num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
+                num_views = len(fnmatch.filter(os.listdir(view_dir), '*.png'))
+                num_ref = len(fnmatch.filter(os.listdir(ply_dir), '*.ply'))
 
                 summary_metrics_path = os.path.join(curr_experiment_path, 'metrics',
                                                     dataset_name + "_" + "experiments" + "_" + experiment[
                                                         'name'] + "_summary.csv")
 
-                if not Path(summary_metrics_path).is_file():  # num_views != 6 * num_ref:
+                if num_views != 1 * num_ref: #not Path(summary_metrics_path).is_file():  # num_views != 6 * num_ref:
                     print("gnerating view pngs for: ", dataset_name, experiment['name'], flush=True)
                     for f in os.listdir(view_dir):
                         os.remove(os.path.join(view_dir, f))
