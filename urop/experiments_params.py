@@ -524,7 +524,7 @@ experiments = [
      'marker': 'D',
      'facecolors': 'yellow',
      'edgecolors': 'yellow',
-     'data': datasets
+     'data': ['longdress', 'redandblack', 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
      },
 
     {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r1',
