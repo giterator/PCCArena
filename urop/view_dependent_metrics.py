@@ -7,11 +7,13 @@ import os
 
 magick_dir = '/temp/pranav/PCCArena/' + 'urop'
 
+
 def write_metric_to_file(file_path, data):
     with open(file_path, 'w') as f:
         # str_write = '\n'.join(data)
         f.write(data)  # overwrites contents
         f.flush()
+
 
 def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     ref_dir, ref_file_name = os.path.split(ref_pc_path)
@@ -30,43 +32,44 @@ def view_dependent_metrics(ref_pc_path, target_pc_path, evl_path):
     # ground_truth_path AND target_path += 'up' down etc + '.png' ; then assign to vars
     temp_img_path_name = os.path.join(parent_target_dir, 'views/', name_without_extension + "_TEMP")
 
-    ssim_up, psnr_up = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'up.png',
-                                                         target_path + 'up.png', temp_img_path_name + 'up')
-    ssim_down, psnr_down = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'down.png',
-                                                             target_path + 'down.png', temp_img_path_name + 'down')
-    ssim_left, psnr_left = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'left.png',
-                                                             target_path + 'left.png', temp_img_path_name + 'left')
-    ssim_right, psnr_right = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'right.png',
-                                                               target_path + 'right.png', temp_img_path_name + 'right')
+    # ssim_up, psnr_up = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'up.png',
+    #                                                      target_path + 'up.png', temp_img_path_name + 'up')
+    # ssim_down, psnr_down = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'down.png',
+    #                                                          target_path + 'down.png', temp_img_path_name + 'down')
+    # ssim_left, psnr_left = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'left.png',
+    #                                                          target_path + 'left.png', temp_img_path_name + 'left')
+    # ssim_right, psnr_right = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'right.png',
+    #                                                            target_path + 'right.png', temp_img_path_name + 'right')
     ssim_front, psnr_front = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'front.png',
                                                                target_path + 'front.png', temp_img_path_name + 'front')
-    ssim_back, psnr_back = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'back.png',
-                                                             target_path + 'back.png', temp_img_path_name + 'back')
+    # ssim_back, psnr_back = caculate_metric_ignore_background(magick_dir, ground_truth_path + 'back.png',
+    #                                                          target_path + 'back.png', temp_img_path_name + 'back')
 
-    avg_ssim = (ssim_up + ssim_down + ssim_left + ssim_right + ssim_front + ssim_back) / 6.0
-    avg_psnr = (psnr_up + psnr_down + psnr_left + psnr_right + psnr_front + psnr_back) / 6.0
+    # avg_ssim = (ssim_up + ssim_down + ssim_left + ssim_right + ssim_front + ssim_back) / 6.0
+    # avg_psnr = (psnr_up + psnr_down + psnr_left + psnr_right + psnr_front + psnr_back) / 6.0
 
-    lines = [f"SSIM up: {ssim_up}",
-             f"SSIM down: {ssim_down}",
-             f"SSIM left: {ssim_left}",
-             f"SSIM right: {ssim_right}",
-             f"SSIM front: {ssim_front}",
-             f"SSIM back: {ssim_back}",
-             #
-             f"PSNR up: {psnr_up}",
-             f"PSNR down: {psnr_down}",
-             f"PSNR left: {psnr_left}",
-             f"PSNR right: {psnr_right}",
-             f"PSNR front: {psnr_front}",
-             f"PSNR back: {psnr_back}",
+    # lines = [f"SSIM up: {ssim_up}",
+    #          f"SSIM down: {ssim_down}",
+    #          f"SSIM left: {ssim_left}",
+    #          f"SSIM right: {ssim_right}",
+    #          f"SSIM front: {ssim_front}",
+    #          f"SSIM back: {ssim_back}",
+    #          #
+    #          f"PSNR up: {psnr_up}",
+    #          f"PSNR down: {psnr_down}",
+    #          f"PSNR left: {psnr_left}",
+    #          f"PSNR right: {psnr_right}",
+    #          f"PSNR front: {psnr_front}",
+    #          f"PSNR back: {psnr_back}",
+    #
+    #          f"Avg PSNR: {avg_psnr}",
+    #          f"Avg SSIM: {avg_ssim}",
+    #          "\n"]
 
-             f"Avg PSNR: {avg_psnr}",
-             f"Avg SSIM: {avg_ssim}",
-             "\n"]
+    lines = [f"SSIM front: {ssim_front}", f"PSNR front: {psnr_front}", "\n"]
 
     ret = '\n'.join(lines)
     return ret
-
 
     # return [f"Avg SSIM: {avg_ssim}",
     #         f"Avg PSNR: {avg_psnr}",
@@ -190,37 +193,37 @@ def generate_png_from_ply(
 
     # we now render 6 images from +- xyz axis
 
-    # right
-    render.setup_camera(
-        60, camera_point, camera_point + [camera, 0, 0],
-        [0, 1, 0]
-    )
-    img = render.render_to_image()
-    o3d.io.write_image(saved_path + "right.png", img, 9)
-
-    # left
-    render.setup_camera(
-        60, camera_point, camera_point + [-camera, 0, 0],
-        [0, 1, 0]
-    )
-    img = render.render_to_image()
-    o3d.io.write_image(saved_path + "left.png", img, 9)
-
-    # up
-    render.setup_camera(
-        60, camera_point, camera_point + [0, camera, 0],
-        [0, 1, 0]
-    )
-    img = render.render_to_image()
-    o3d.io.write_image(saved_path + "up.png", img, 9)
-
-    # down
-    render.setup_camera(
-        60, camera_point, camera_point + [0, -camera, 0],
-        [0, 1, 0]
-    )
-    img = render.render_to_image()
-    o3d.io.write_image(saved_path + "down.png", img, 9)
+    # # right
+    # render.setup_camera(
+    #     60, camera_point, camera_point + [camera, 0, 0],
+    #     [0, 1, 0]
+    # )
+    # img = render.render_to_image()
+    # o3d.io.write_image(saved_path + "right.png", img, 9)
+    #
+    # # left
+    # render.setup_camera(
+    #     60, camera_point, camera_point + [-camera, 0, 0],
+    #     [0, 1, 0]
+    # )
+    # img = render.render_to_image()
+    # o3d.io.write_image(saved_path + "left.png", img, 9)
+    #
+    # # up
+    # render.setup_camera(
+    #     60, camera_point, camera_point + [0, camera, 0],
+    #     [0, 1, 0]
+    # )
+    # img = render.render_to_image()
+    # o3d.io.write_image(saved_path + "up.png", img, 9)
+    #
+    # # down
+    # render.setup_camera(
+    #     60, camera_point, camera_point + [0, -camera, 0],
+    #     [0, 1, 0]
+    # )
+    # img = render.render_to_image()
+    # o3d.io.write_image(saved_path + "down.png", img, 9)
 
     # front
     render.setup_camera(
@@ -230,13 +233,14 @@ def generate_png_from_ply(
     img = render.render_to_image()
     o3d.io.write_image(saved_path + "front.png", img, 9)
 
-    # back
-    render.setup_camera(
-        60, camera_point, camera_point + [0, 0, -camera],
-        [0, 1, 0]
-    )
-    img = render.render_to_image()
-    o3d.io.write_image(saved_path + "back.png", img, 9)
+    # # back
+    # render.setup_camera(
+    #     60, camera_point, camera_point + [0, 0, -camera],
+    #     [0, 1, 0]
+    # )
+    # img = render.render_to_image()
+    # o3d.io.write_image(saved_path + "back.png", img, 9)
+
     # # note that the new rendering method may fail without err message
     # # I just retry until it success
     # while(os.path.getsize(filename_png + "006.png") < file_size):
