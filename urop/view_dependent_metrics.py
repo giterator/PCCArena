@@ -187,7 +187,7 @@ def generate_png_from_ply(
     # the last value is 'alpha', the transparency
     render.scene.set_background(np.array([0.5, 0.5, 0.5, 1.0]))
     render.scene.add_geometry("pcd", pointcloud, material)
-    camera = 1500  # camera distance ; need to use 3000 for basketball & dancer
+    camera = 1100  # camera distance ; need to use 3000 for basketball & dancer
     # camera point to
     camera_point = pointcloud.get_axis_aligned_bounding_box().get_center()
 
