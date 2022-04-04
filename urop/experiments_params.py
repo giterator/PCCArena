@@ -13,7 +13,7 @@ dir = '/temp/pranav/dynamic_pc_data/'
 VPCC_dir = '/temp/pranav/mpeg-pcc-tmc2/'
 PCCArena_dir = '/temp/pranav/PCCArena/'
 
-datasets = ['longdress', 'loot', 'redandblack', 'soldier']
+datasets = ['longdress', 'loot', 'redandblack'] #, 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
 
 metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1-2) p2pt',
@@ -524,7 +524,7 @@ experiments = [
      'marker': 'D',
      'facecolors': 'yellow',
      'edgecolors': 'yellow',
-     'data': ['longdress', 'redandblack', 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
+     'data': ['longdress', 'redandblack'] #, 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
      },
 
     {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r1',
