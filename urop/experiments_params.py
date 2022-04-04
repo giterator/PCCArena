@@ -91,7 +91,7 @@ experiments = [
 
     # vanilla r1
     {'name': 'vanilla_r1',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
@@ -103,7 +103,7 @@ experiments = [
     ###########
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '*',
@@ -114,7 +114,7 @@ experiments = [
 
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=40_AQP=52',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': 'p',
@@ -437,7 +437,7 @@ experiments = [
     # R1 2DD
     {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': 's',
@@ -448,7 +448,7 @@ experiments = [
 
     {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': 'D',
@@ -459,7 +459,7 @@ experiments = [
 
     {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': mpath.Path.unit_regular_star(8),
@@ -471,7 +471,7 @@ experiments = [
     # R1 3DD
     {'name': '3DD_2_noQuantize_OM=4_r1',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
@@ -483,7 +483,7 @@ experiments = [
     {'name': '3DD_2_Quantize=2_OM=4_r1',
      'encode': common_encode_cmd +
                ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD', '--downscalePC=2',
-                '--config=cfg/rate/ctc-r1.cfg'],
+                '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--upscalePC=2'],
 
      'marker': 'v',
@@ -494,7 +494,7 @@ experiments = [
 
     {'name': '3DD_4_noQuantize_OM=4_r1',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD',
-                                    '--config=cfg/rate/ctc-r1.cfg'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
@@ -507,7 +507,7 @@ experiments = [
     # R1 2DD WITH INTERPOLATE
     {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'], #, '--minimumImageWidth=1', '--minimumImageHeight=1'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 's',
@@ -518,7 +518,7 @@ experiments = [
 
     {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'], # '--minimumImageWidth=1', '--minimumImageHeight=1'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 'D',
@@ -529,7 +529,7 @@ experiments = [
 
     {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg'], # '--minimumImageWidth=1', '--minimumImageHeight=1'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': mpath.Path.unit_regular_star(8),
