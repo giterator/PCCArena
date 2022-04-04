@@ -99,7 +99,7 @@ def caculate_metric_ignore_background(
     # print(f"{mask_file_name}_psnr.png\n", flush=True)
 
     grey = 127
-    threshold = 1.1  # background flactuate in new open3d rendering method
+    threshold = 2.1  # background flactuate in new open3d rendering method
     for i in range(rows):
         for j in range(cols):
             if (
