@@ -523,8 +523,10 @@ experiments = [
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 's',
-     'facecolors': 'yellow',
-     'edgecolors': 'yellow',
+     # 'facecolors': 'yellow',
+     # 'edgecolors': 'yellow',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
      'data': datasets,
      'label': '2DD R1 DownsampleX=2'
      },
@@ -536,8 +538,10 @@ experiments = [
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 'D',
-     'facecolors': 'yellow',
-     'edgecolors': 'yellow',
+     'facecolors': 'orange',
+     'edgecolors': 'orange',
+     # 'facecolors': 'yellow',
+     # 'edgecolors': 'yellow',
      'data': ['longdress', 'redandblack'],  # , 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
      'label': '2DD R1 DownsampleY=2'
      },
@@ -550,7 +554,8 @@ experiments = [
 
      'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
-     'edgecolors': 'yellow',
+     # 'edgecolors': 'yellow',
+     'edgecolors': 'orange',
      'data': datasets,
      'label': '2DD R1 DownsampleX=2 DownsampleY=2'
      },
