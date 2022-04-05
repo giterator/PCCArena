@@ -13,7 +13,7 @@ dir = '/temp/pranav/dynamic_pc_data/'
 VPCC_dir = '/temp/pranav/mpeg-pcc-tmc2/'
 PCCArena_dir = '/temp/pranav/PCCArena/'
 
-datasets = ['longdress', 'loot', 'redandblack'] #, 'soldier']
+datasets = ['longdress', 'loot', 'redandblack']  # , 'soldier']
 start_frame_no = {'longdress': '1051', 'loot': '1000', 'redandblack': '1450', 'soldier': '0536'}
 
 metric_name_map = {'acd12_p2pt': 'Asym. Chamfer dist. (1-2) p2pt',
@@ -91,36 +91,42 @@ experiments = [
 
     # vanilla r1
     {'name': 'vanilla_r1',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
      'facecolors': 'black',
      'edgecolors': 'black',
-     'data': datasets
+     'data': datasets,
+     'label': 'HEVC R1 GQP=32 AQP=42'
      },
 
     ###########
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47',
+                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '*',
      'facecolors': 'black',
      'edgecolors': 'black',
-     'data': datasets
+     'data': datasets,
+     'label': 'HEVC GQP=36 AQP=47'
      },
 
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=40_AQP=52',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=52',
+                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': 'p',
      'facecolors': 'black',
      'edgecolors': 'black',
-     'data': datasets
+     'data': datasets,
+     'label': 'HEVC GQP=40 AQP=52'
      },
     ######################
 
@@ -435,49 +441,51 @@ experiments = [
     #  },
     ########################################################
     # R1 2DD
-    {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
-     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
-
-     'marker': 's',
-     'facecolors': 'cyan',
-     'edgecolors': 'cyan',
-     'data': datasets
-     },
-
-    {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
-     'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
-
-     'marker': 'D',
-     'facecolors': 'cyan',
-     'edgecolors': 'cyan',
-     'data': datasets
-     },
-
-    {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
-     'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
-
-     'marker': mpath.Path.unit_regular_star(8),
-     'facecolors': 'none',
-     'edgecolors': 'cyan',
-     'data': datasets
-     },
+    # {'name': '2DD_lodX=2_lodY=1_OM=4_r1',
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
+    #                                 '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 's',
+    #  'facecolors': 'cyan',
+    #  'edgecolors': 'cyan',
+    #  'data': datasets
+    #  },
+    #
+    # {'name': '2DD_lodX=1_lodY=2_OM=4_r1',
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
+    #                                 '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 'D',
+    #  'facecolors': 'cyan',
+    #  'edgecolors': 'cyan',
+    #  'data': datasets
+    #  },
+    #
+    # {'name': '2DD_lodX=2_lodY=2_OM=4_r1',
+    #  'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
+    #                                 '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': mpath.Path.unit_regular_star(8),
+    #  'facecolors': 'none',
+    #  'edgecolors': 'cyan',
+    #  'data': datasets
+    #  },
 
     # R1 3DD
     {'name': '3DD_2_noQuantize_OM=4_r1',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=2', '--threeDD',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
      'facecolors': 'magenta',
      'edgecolors': 'magenta',
-     'data': datasets
+     'data': datasets,
+     'label': '3DD R1 Downsample=2'
      },
 
     {'name': '3DD_2_Quantize=2_OM=4_r1',
@@ -489,53 +497,62 @@ experiments = [
      'marker': 'v',
      'facecolors': 'magenta',
      'edgecolors': 'magenta',
-     'data': datasets
+     'data': datasets,
+     'label': '3DD R1 Downsample=2 ScaleGeometry=2'
      },
 
     {'name': '3DD_4_noQuantize_OM=4_r1',
      'encode': common_encode_cmd + ['--occupancyPrecision=4', '--threeDDPointsPerVoxel=4', '--threeDD',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
      'marker': '^',
      'facecolors': 'none',
      'edgecolors': 'magenta',
-     'data': datasets
+     'data': datasets,
+     'label': '3DD R1 Downsample=4'
      },
     #########################################################
 
     # R1 2DD WITH INTERPOLATE
     {'name': '2DD_INT_lodX=2_lodY=1_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=1', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 's',
      'facecolors': 'yellow',
      'edgecolors': 'yellow',
-     'data': datasets
+     'data': datasets,
+     'label': '2DD R1 DownsampleX=2'
      },
 
     {'name': '2DD_INT_lodX=1_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=1', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': 'D',
      'facecolors': 'yellow',
      'edgecolors': 'yellow',
-     'data': ['longdress', 'redandblack'] #, 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
+     'data': ['longdress', 'redandblack'],  # , 'soldier'] #LOOT CAUSES SEG FAULT when decoding WHY???
+     'label': '2DD R1 DownsampleY=2'
      },
 
     {'name': '2DD_INT_lodX=2_lodY=2_OM=4_r1',
      'encode': common_encode_cmd + ['--levelOfDetailX=2', '--levelOfDetailY=2', '--occupancyPrecision=4',
-                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512', '--minimumImageHeight=512'],
+                                    '--config=cfg/rate/ctc-r1.cfg', '--minimumImageWidth=512',
+                                    '--minimumImageHeight=512'],
      'decode': common_decode_cmd + ['--int2DD'],
 
      'marker': mpath.Path.unit_regular_star(8),
      'facecolors': 'none',
      'edgecolors': 'yellow',
-     'data': datasets
+     'data': datasets,
+     'label': '2DD R1 DownsampleX=2 DownsampleY=2'
      },
     ##########
     # # R2 2DD WITH INTERPOLATE

@@ -486,7 +486,7 @@ def collate_quality_rate():
                             or label_name == '3DD_2_Quantize=2_OM=4' or label_name == '3DD_4_noQuantize_OM=4':
                         label_name = label_name + '_r3'
                     ##################################################
-                    plt.scatter(bin_size, avg_metric, label=label_name, marker=experiment['marker'],
+                    plt.scatter(bin_size, avg_metric, label=experiment['label'], marker=experiment['marker'],
                                 edgecolors=experiment['edgecolors'], facecolors=experiment['facecolors'])
                     # annotate points
                     texts.append(plt.annotate("(" + str(np.format_float_positional(bin_size, precision=3)) + "," + str(
