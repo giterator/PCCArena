@@ -103,17 +103,30 @@ experiments = [
      },
 
     ###########
+    # # vanilla RC
+    # {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
+    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47',
+    #                                 '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': '*',
+    #  'facecolors': 'black',
+    #  'edgecolors': 'black',
+    #  'data': datasets,
+    #  'label': 'HEVC GQP=36 AQP=47'
+    #  },
+
     # vanilla RC
-    {'name': 'vanilla_rc_OM=4_GQP=36_AQP=47',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=36', '--attributeQP=47',
+    {'name': 'vanilla_rc_OM=4_GQP=33_AQP=43',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=33', '--attributeQP=43',
                                     '--minimumImageWidth=512', '--minimumImageHeight=512'],
      'decode': common_decode_cmd,
 
-     'marker': '*',
+     'marker': 'X',
      'facecolors': 'black',
      'edgecolors': 'black',
      'data': datasets,
-     'label': 'HEVC GQP=36 AQP=47'
+     'label': 'HEVC GQP=33 AQP=43'
      },
 
     # vanilla RC
@@ -127,6 +140,18 @@ experiments = [
      'edgecolors': 'black',
      'data': datasets,
      'label': 'HEVC GQP=40 AQP=52'
+     },
+
+    {'name': 'vanilla_rc_OM=4_GQP=40_AQP=53',
+     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=40', '--attributeQP=53',
+                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
+     'decode': common_decode_cmd,
+
+     'marker': '*',
+     'facecolors': 'black',
+     'edgecolors': 'black',
+     'data': datasets,
+     'label': 'HEVC GQP=40 AQP=53'
      },
 
     # vanilla RC
@@ -156,17 +181,17 @@ experiments = [
      },
 
     # vanilla RC
-    {'name': 'vanilla_rc_OM=4_GQP=35_AQP=47',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=35', '--attributeQP=47',
-                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
-
-     'marker': 'D',
-     'facecolors': 'black',
-     'edgecolors': 'black',
-     'data': datasets,
-     'label': 'HEVC GQP=35 AQP=47'
-     },
+    # {'name': 'vanilla_rc_OM=4_GQP=35_AQP=47',
+    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=35', '--attributeQP=47',
+    #                                 '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 'D',
+    #  'facecolors': 'black',
+    #  'edgecolors': 'black',
+    #  'data': datasets,
+    #  'label': 'HEVC GQP=35 AQP=47'
+    #  },
 
     # vanilla RC
     {'name': 'vanilla_rc_OM=4_GQP=36_AQP=46',
@@ -181,31 +206,31 @@ experiments = [
      'label': 'HEVC GQP=36 AQP=46'
      },
 
-    # vanilla RC
-    {'name': 'vanilla_rc_OM=4_GQP=41_AQP=47',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=41', '--attributeQP=47',
-                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
+    # # vanilla RC
+    # {'name': 'vanilla_rc_OM=4_GQP=41_AQP=47',
+    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=41', '--attributeQP=47',
+    #                                 '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 'P',
+    #  'facecolors': 'black',
+    #  'edgecolors': 'black',
+    #  'data': datasets,
+    #  'label': 'HEVC GQP=41 AQP=47'
+    #  },
 
-     'marker': 'P',
-     'facecolors': 'black',
-     'edgecolors': 'black',
-     'data': datasets,
-     'label': 'HEVC GQP=41 AQP=47'
-     },
-
-    # vanilla RC
-    {'name': 'vanilla_rc_OM=4_GQP=41_AQP=48',
-     'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=41', '--attributeQP=48',
-                                    '--minimumImageWidth=512', '--minimumImageHeight=512'],
-     'decode': common_decode_cmd,
-
-     'marker': 'X',
-     'facecolors': 'black',
-     'edgecolors': 'black',
-     'data': datasets,
-     'label': 'HEVC GQP=41 AQP=48'
-     },
+    # # vanilla RC
+    # {'name': 'vanilla_rc_OM=4_GQP=41_AQP=48',
+    #  'encode': common_encode_cmd + ['--occupancyPrecision=4', '--geometryQP=41', '--attributeQP=48',
+    #                                 '--minimumImageWidth=512', '--minimumImageHeight=512'],
+    #  'decode': common_decode_cmd,
+    #
+    #  'marker': 'X',
+    #  'facecolors': 'black',
+    #  'edgecolors': 'black',
+    #  'data': datasets,
+    #  'label': 'HEVC GQP=41 AQP=48'
+    #  },
     ######################
 
     # # vanilla RC
