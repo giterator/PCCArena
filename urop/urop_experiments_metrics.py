@@ -48,8 +48,8 @@
 # import logging
 from pathlib import Path
 import os
-from experiments_params import *
-from view_dependent_metrics import *
+from urop.experiments_params import *
+from urop.view_dependent_metrics import *
 
 import fnmatch
 import subprocess as sp
@@ -590,7 +590,7 @@ if __name__ == '__main__':
                 os.remove(os.path.join(view_dir, f))
             ##
             Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
-                generate_png_from_ply)(os.path.join(ply_dir, ply), 1, os.path.join(view_dir, os.path.splitext(ply)[0]))
+                generate_png_from_ply)(os.path.join(ply_dir, ply), 2, os.path.join(view_dir, os.path.splitext(ply)[0]))
                                 for ply in os.listdir(ply_dir))
             # for ply in os.listdir(ply_dir):
             #     generate_png_from_ply(ply, "3", os.path.join(view_dir, os.path.splitext(ply)[0]))
@@ -620,7 +620,7 @@ if __name__ == '__main__':
                         os.remove(os.path.join(view_dir, f))
                     ##
                     Parallel(n_jobs=30)(delayed(  # multiprocessing.cpu_count()
-                        generate_png_from_ply)(os.path.join(ply_dir, ply), 1,
+                        generate_png_from_ply)(os.path.join(ply_dir, ply), 2,
                                                os.path.join(view_dir, os.path.splitext(ply)[0]))
                                         for ply in os.listdir(ply_dir))
 
