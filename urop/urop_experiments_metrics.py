@@ -48,8 +48,8 @@
 # import logging
 from pathlib import Path
 import os
-from urop.experiments_params import *
-from urop.view_dependent_metrics import *
+from experiments_params import *
+from view_dependent_metrics import *
 
 import fnmatch
 import subprocess as sp
