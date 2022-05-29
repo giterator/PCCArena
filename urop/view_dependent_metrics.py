@@ -183,7 +183,7 @@ def generate_png_from_ply(
     material.shader = "defaultUnlit"
     material.point_size = point_size
 
-    render = rendering.OffscreenRenderer(2048, 2048, headless=False)
+    render = rendering.OffscreenRenderer(2048, 2048, headless=True)
     # the last value is 'alpha', the transparency
     render.scene.set_background(np.array([0.5, 0.5, 0.5, 1.0]))
     render.scene.add_geometry("pcd", pointcloud, material)
